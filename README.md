@@ -20,7 +20,7 @@ Following things are ready to be used directly with AdminLTE Theme.
 - Password Reset
 - Home Layout with Sidebar
 
-## Packages Installed
+## Paquetes instalados
 
 - InfyOm Laravel Generator
 - AdminLTE Templates
