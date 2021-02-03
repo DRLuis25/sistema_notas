@@ -1,6 +1,14 @@
 
 # Sistema de Notas para una escuela
 
+Opciones
+ - Registro
+    - Usuarios
+    - Alumnos
+    - Docentes
+    - Notas
+ - Reportes
+
 # Laravel Boilerplate for AdminLTE Theme
 
 Laravel Boilerplate with [AdminLTE](https://adminlte.io/) Theme with [InfyOm Laravel Generator](https://github.com/InfyOmLabs/laravel-generator).
