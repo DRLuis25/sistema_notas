@@ -7,7 +7,8 @@ return array (
   array (
     'id' => 'Id',
     'descripcion' => 'Descripcion',
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
+    'created_at' => 'Creado el',
+    'updated_at' => 'Actualizado el',
+    'deleted_at' => 'Eliminado el',
   ),
 );

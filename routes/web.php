@@ -32,3 +32,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+
+
+
+
+Route::resource('departamentos', 'DepartamentosController');
+
+
+
+
+
+Route::resource('docentes', 'DocentesController');
+
+Route::resource('periodos', 'PeriodosController');
+
+Route::resource('cursos', 'CursosController');
+
+Route::resource('alumnos', 'AlumnosController');
+
+Route::resource('cursoGrados', 'CursoGradoController');
+
+Route::resource('secciones', 'SeccionesController');
+
+Route::resource('capacidades', 'CapacidadesController');
+
+Route::resource('matriculas', 'MatriculasController');
+
+Route::resource('evaluaciones', 'EvaluacionesController');
+
+Route::resource('catedras', 'CatedraController');
