@@ -40,6 +40,7 @@ class CreateEvaluacionesTable extends Migration
             $table->string('exonerado',1)->default('0');
             $table->timestamps();
             $table->softDeletes();
+            //$table->primary(array('matricula_id'));
             $table->unique(['matricula_id','periodo_id']);
             $table->foreign('matricula_id', 'matricula_detalle_has_alumno_ibfk_1')->references('id')->on('matricula');
             $table->foreign('periodo_id', 'matricula_detalle_has_periodo_ibfk_1')->references('id')->on('periodo');
@@ -54,7 +55,7 @@ class CreateEvaluacionesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unique(['matricula_id','periodo_id','curso_id'],'exonerado_unique');
-            $table->foreign('matricula_id', 'exonerado_has_matricula_ibfk_1')->references('matricula_id')->on('matricula_detalle');
+            $table->foreign('matricula_id', 'exonerado_has_matricula_ibfk_1')->references('id')->on('matricula');
             $table->foreign('periodo_id', 'exonerado_has_periodo_ibfk_1')->references('id')->on('periodo');
             $table->foreign('curso_id', 'exonerado_has_curso_ibfk_1')->references('id')->on('curso');
         });
@@ -70,11 +71,13 @@ class CreateEvaluacionesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unique(['matricula_id','periodo_id','bimestre_id','capacidad_id'],'evaluacion_unique');
-            $table->foreign('matricula_id', 'evaluacion_has_matricula_ibfk_1')->references('matricula_id')->on('matricula_detalle');
+            //$table->foreign('matricula_id', 'evaluacion_has_matricula_ibfk_1')->references('matricula_id')->on('matricula_detalle');
+            $table->foreign('matricula_id', 'evaluacion_has_matricula_ibfk_1')->references('id')->on('matricula');
             $table->foreign('periodo_id', 'evaluacion_has_periodo_ibfk_1')->references('id')->on('periodo');
             $table->foreign('bimestre_id', 'evaluacion_has_bimestre_ibfk_1')->references('id')->on('bimestre');
             $table->foreign('capacidad_id', 'evaluacion_has_capacidad_ibfk_1')->references('id')->on('capacidad');
         });
+        
     }
 
     /**

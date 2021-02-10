@@ -6,8 +6,11 @@ use App\Http\Requests\CreateCapacidadesRequest;
 use App\Http\Requests\UpdateCapacidadesRequest;
 use App\Repositories\CapacidadesRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Niveles;
+use App\Models\Periodos;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class CapacidadesController extends AppBaseController
@@ -42,7 +45,9 @@ class CapacidadesController extends AppBaseController
      */
     public function create()
     {
-        return view('capacidades.create');
+        $periodo = Periodos::where('status','=','1')->first();
+        $niveles = Niveles::all();
+        return view('capacidades.create',compact(['periodo','niveles']));
     }
 
     /**
@@ -54,13 +59,21 @@ class CapacidadesController extends AppBaseController
      */
     public function store(CreateCapacidadesRequest $request)
     {
-        $input = $request->all();
+        try {
+            DB::beginTransaction();
+            $input = $request->all();
 
-        $capacidades = $this->capacidadesRepository->create($input);
+            $capacidades = $this->capacidadesRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/capacidades.singular')]));
-
-        return redirect(route('capacidades.index'));
+            Flash::success(__('messages.saved', ['model' => __('models/capacidades.singular')]));
+            DB::commit();
+            return redirect(route('capacidades.index'));
+            
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Flash::error(__('messages.rel_exist'));
+            return redirect(route('capacidades.index'));
+        }
     }
 
     /**

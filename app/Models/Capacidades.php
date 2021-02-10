@@ -81,7 +81,7 @@ class Capacidades extends Model
      **/
     public function curso()
     {
-        return $this->belongsTo(\App\Models\Curso::class, 'curso_id');
+        return $this->belongsTo(Cursos::class, 'curso_id');
     }
 
     /**
@@ -89,7 +89,7 @@ class Capacidades extends Model
      **/
     public function grado()
     {
-        return $this->belongsTo(\App\Models\Grado::class, 'grado_id');
+        return $this->belongsTo(Grados::class, 'grado_id');
     }
 
     /**
@@ -97,7 +97,7 @@ class Capacidades extends Model
      **/
     public function periodo()
     {
-        return $this->belongsTo(\App\Models\Periodo::class, 'periodo_id');
+        return $this->belongsTo(Periodos::class, 'periodo_id');
     }
 
     /**

@@ -75,7 +75,7 @@ class Matriculas extends Model
      **/
     public function matricula()
     {
-        return $this->belongsTo(\App\Models\Matricula::class, 'matricula_id');
+        return $this->belongsTo(MatriculaMaestro::class, 'matricula_id');
     }
 
     /**
@@ -83,7 +83,7 @@ class Matriculas extends Model
      **/
     public function periodo()
     {
-        return $this->belongsTo(\App\Models\Periodo::class, 'periodo_id');
+        return $this->belongsTo(Periodos::class, 'periodo_id');
     }
 
     /**
@@ -91,6 +91,6 @@ class Matriculas extends Model
      **/
     public function seccion()
     {
-        return $this->belongsTo(\App\Models\Seccion::class, 'seccion_id');
+        return $this->belongsTo(Secciones::class, 'seccion_id');
     }
 }

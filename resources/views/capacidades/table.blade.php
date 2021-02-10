@@ -3,23 +3,23 @@
         <thead>
             <tr>
                 <th>@lang('models/capacidades.fields.periodo_id')</th>
-        <th>@lang('models/capacidades.fields.curso_id')</th>
-        <th>@lang('models/capacidades.fields.grado_id')</th>
-        <th>@lang('models/capacidades.fields.asignatura')</th>
-        <th>@lang('models/capacidades.fields.abreviatura')</th>
-        <th>@lang('models/capacidades.fields.orden')</th>
+                <th>@lang('models/capacidades.fields.curso_id')</th>
+                <th>@lang('models/capacidades.fields.grado_id')</th>
+                <th>@lang('models/capacidades.fields.asignatura')</th>
+                <th>@lang('models/capacidades.fields.abreviatura')</th>
+                <th>@lang('models/capacidades.fields.orden')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
         <tbody>
         @foreach($capacidades as $capacidades)
             <tr>
-                <td>{{ $capacidades->periodo_id }}</td>
-            <td>{{ $capacidades->curso_id }}</td>
-            <td>{{ $capacidades->grado_id }}</td>
-            <td>{{ $capacidades->asignatura }}</td>
-            <td>{{ $capacidades->abreviatura }}</td>
-            <td>{{ $capacidades->orden }}</td>
+                <td>{{ $capacidades->periodo->nombre }}</td>
+                <td>{{ $capacidades->curso->nombre }}</td>
+                <td>{{ $capacidades->grado->descripcion }}</td>
+                <td>{{ $capacidades->asignatura }}</td>
+                <td>{{ $capacidades->abreviatura }}</td>
+                <td>{{ $capacidades->orden }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['capacidades.destroy', $capacidades->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

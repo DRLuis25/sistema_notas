@@ -16,6 +16,7 @@ class CreatePeriodoTable extends Migration
         Schema::create('periodo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->char('status',1)->default('1');
             $table->timestamps();
             $table->softDeletes();
         });

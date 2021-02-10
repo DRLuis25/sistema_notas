@@ -63,7 +63,7 @@ class MatriculaMaestro extends Model
      **/
     public function alumno()
     {
-        return $this->belongsTo(\App\Models\Alumno::class, 'alumno_id');
+        return $this->belongsTo(Alumnos::class, 'alumno_id');
     }
 
     /**

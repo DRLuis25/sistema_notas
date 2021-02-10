@@ -69,8 +69,8 @@ class CreateGradoDeEstudiosTables extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('periodo_id', 'capacidad_has_periodo_ibfk_1')->references('id')->on('periodo');
-            $table->foreign('curso_id', 'capacidad_has_curso_ibfk_1')->references('curso_id')->on('curso_grado');
-            $table->foreign('grado_id', 'capacidad_has_grado_ibfk_2')->references('grado_id')->on('curso_grado');
+            $table->foreign('curso_id', 'capacidad_has_curso_ibfk_1')->references('id')->on('curso');//curso_grado
+            $table->foreign('grado_id', 'capacidad_has_grado_ibfk_2')->references('id')->on('grado');//curso_grado
         });
     }
 

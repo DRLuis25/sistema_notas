@@ -6,6 +6,9 @@ use App\Http\Requests\CreateCatedraRequest;
 use App\Http\Requests\UpdateCatedraRequest;
 use App\Repositories\CatedraRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Docentes;
+use App\Models\Niveles;
+use App\Models\Periodos;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +45,10 @@ class CatedraController extends AppBaseController
      */
     public function create()
     {
-        return view('catedras.create');
+        $periodo = Periodos::where('status','=','1')->first();
+        $docentes = Docentes::all();
+        $niveles = Niveles::all();
+        return view('catedras.create',compact(['periodo','docentes','niveles']));
     }
 
     /**

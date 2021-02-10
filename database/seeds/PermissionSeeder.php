@@ -82,7 +82,7 @@ class PermissionSeeder extends Seeder
         factory(Docentes::class,20)->create();
         //Alumnos
         factory(Alumnos::class,20)->create();
-
+        
         //Grados
         //Primaria
         $primerGradoPrimaria = Grados::create([
@@ -207,20 +207,6 @@ class PermissionSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'password'=>'$2y$10$cuf37o9lN0IkRFv73Q7IB.c5bDqCvog845XuTKHxSbMep/D04mknG' //password
         ]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     }
 }

@@ -3,21 +3,25 @@
         <thead>
             <tr>
                 <th>@lang('models/matriculas.fields.matricula_id')</th>
-        <th>@lang('models/matriculas.fields.periodo_id')</th>
-        <th>@lang('models/matriculas.fields.seccion_id')</th>
-        <th>@lang('models/matriculas.fields.observaciones')</th>
-        <th>@lang('models/matriculas.fields.exonerado')</th>
+                <th>@lang('models/alumnos.fields.apellidosyNombres')</th>
+                <th>@lang('models/matriculas.fields.periodo_id')</th>
+                <th>@lang('models/matriculas.fields.seccion_id')</th>
+                <th>@lang('models/matriculas.fields.observaciones')</th>
+                <th>@lang('models/matriculas.fields.exonerado')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
         <tbody>
         @foreach($matriculas as $matriculas)
             <tr>
-                <td>{{ $matriculas->matricula_id }}</td>
-            <td>{{ $matriculas->periodo_id }}</td>
-            <td>{{ $matriculas->seccion_id }}</td>
-            <td>{{ $matriculas->observaciones }}</td>
-            <td>{{ $matriculas->exonerado }}</td>
+                <td>{{ $matriculas->matricula->nromatricula }}</td>
+                <td>{{ $matriculas->matricula->alumno->apellidoPaterno }} {{ $matriculas->matricula->alumno->apellidoMaterno }}, {{ $matriculas->matricula->alumno->nombres }}</td>
+                <td>{{ $matriculas->periodo->nombre }}</td>
+                <td>{{ $matriculas->seccion->letra }}</td>
+                <td>{{ $matriculas->observaciones }}</td>
+                <td>
+                    {{ $matriculas->exonerado }}
+                </td>
                 <td width="120">
                     <!--arreglar el id para las acciones-->
                     {!! Form::open(['route' => ['matriculas.destroy', $matriculas->matricula_id], 'method' => 'delete']) !!}

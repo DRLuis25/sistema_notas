@@ -6,8 +6,15 @@ use App\Http\Requests\CreateCursoGradoRequest;
 use App\Http\Requests\UpdateCursoGradoRequest;
 use App\Repositories\CursoGradoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Cursos;
+use App\Models\Grados;
+use App\Models\Niveles;
+use App\Models\Periodos;
+use App\Models\Secciones;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
+use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
 class CursoGradoController extends AppBaseController
@@ -42,7 +49,10 @@ class CursoGradoController extends AppBaseController
      */
     public function create()
     {
-        return view('curso_grados.create');
+        $periodo = Periodos::where('status','=','1')->first();
+        //return $periodo;
+        $niveles = Niveles::all();
+        return view('curso_grados.create',compact(['periodo','niveles']));
     }
 
     /**
@@ -54,13 +64,21 @@ class CursoGradoController extends AppBaseController
      */
     public function store(CreateCursoGradoRequest $request)
     {
-        $input = $request->all();
+        try {
+            DB::beginTransaction();
+            $input = $request->all();
 
-        $cursoGrado = $this->cursoGradoRepository->create($input);
-
-        Flash::success(__('messages.saved', ['model' => __('models/cursoGrados.singular')]));
-
-        return redirect(route('cursoGrados.index'));
+            $cursoGrado = $this->cursoGradoRepository->create($input);
+    
+            Flash::success(__('messages.saved', ['model' => __('models/cursoGrados.singular')]));
+            DB::commit();
+            return redirect(route('cursoGrados.index'));
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Flash::error(__('messages.rel_exist'));
+            return redirect(route('cursoGrados.index'));
+        }
+        
     }
 
     /**
@@ -152,5 +170,21 @@ class CursoGradoController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/cursoGrados.singular')]));
 
         return redirect(route('cursoGrados.index'));
+    }
+    public function listarGrados(request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $grados = Grados::where('nivel_id','=',$id)->get();
+            return response()->json($grados);
+        }
+    }
+    public function listarSecciones(request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $secciones = Secciones::where('grado_id','=',$id)->get();
+            return response()->json($secciones);
+        }
     }
 }

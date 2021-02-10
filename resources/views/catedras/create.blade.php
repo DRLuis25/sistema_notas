@@ -37,3 +37,34 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+    $("#nivel_id").change(event => {
+        $.get(`/getCursos/${event.target.value}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#curso_id").empty();
+            $("#curso_id").append(`<option value=''> Seleccione curso </option>`);
+            res.forEach(element => {
+                $("#curso_id").append(`<option value=${element.id}> ${element.nombre} </option>`);
+            });
+        });
+        $.get(`/getGrados/${event.target.value}`, function(res, sta){
+            $("#grado_id").empty();
+            $("#grado_id").append(`<option value=''> Seleccione grado </option>`);
+            res.forEach(element => {
+                $("#grado_id").append(`<option value=${element.id}> ${element.descripcion} </option>`);
+            });
+        });
+    });
+    $("#grado_id").change(event => {
+        $.get(`/getSecciones/${event.target.value}`, function(res, sta){
+            $("#seccion_id").empty();
+            $("#seccion_id").append(`<option value=''> Seleccione sección </option>`);
+            res.forEach(element => {
+                $("#seccion_id").append(`<option value=${element.id}> ${element.letra} </option>`);
+            });
+        });
+    });
+</script>
+@endsection

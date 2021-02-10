@@ -1,12 +1,12 @@
 <?php
 
 return array (
-  'singular' => 'Categoria',
-  'plural' => 'Categorias',
+  'singular' => 'Periodos',
+  'plural' => 'Periodos',
   'fields' => 
   array (
     'id' => 'Id',
-    'descripcion' => 'Descripcion',
+    'nombre' => 'Nombre',
     'created_at' => 'Creado el',
     'updated_at' => 'Actualizado el',
     'deleted_at' => 'Eliminado el',

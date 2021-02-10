@@ -3,9 +3,10 @@
         <thead>
             <tr>
                 <th>@lang('models/secciones.fields.periodo_id')</th>
-        <th>@lang('models/secciones.fields.letra')</th>
-        <th>@lang('models/secciones.fields.nrovacantes')</th>
-        <th>@lang('models/secciones.fields.grado_id')</th>
+                <th>@lang('models/secciones.fields.grado_id')</th>
+                <th>@lang('models/secciones.fields.letra')</th>
+                <th>@lang('models/secciones.fields.nrovacantes')</th>
+        
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
@@ -13,9 +14,9 @@
         @foreach($secciones as $secciones)
             <tr>
                 <td>{{ $secciones->periodo->nombre }}</td>
-            <td>{{ $secciones->letra }}</td>
-            <td>{{ $secciones->nrovacantes }}</td>
-            <td>{{ $secciones->grado->descripcion }} - {{$secciones->grado->nivel->descripcion}}</td>
+                <td>{{ $secciones->grado->descripcion }} - {{$secciones->grado->nivel->descripcion}}</td>
+                <td>{{ $secciones->letra }}</td>
+                <td>{{ $secciones->nrovacantes }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['secciones.destroy', $secciones->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

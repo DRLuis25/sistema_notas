@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCursosRequest;
 use App\Http\Requests\UpdateCursosRequest;
 use App\Repositories\CursosRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Cursos;
 use App\Models\Niveles;
 use Illuminate\Http\Request;
 use Flash;
@@ -154,5 +155,13 @@ class CursosController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/cursos.singular')]));
 
         return redirect(route('cursos.index'));
+    }
+
+    public function listarCursos(request $request,$id){
+        if($request->ajax())
+        {
+            $cursos = Cursos::where('nivel_id','=',$id)->get();
+            return response()->json($cursos);
+        }
     }
 }
