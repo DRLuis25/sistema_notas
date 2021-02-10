@@ -110,6 +110,22 @@ class PermissionSeeder extends Seeder
             'descripcion'=>'Primero',
             'nivel_id'=>$secundaria->id //Secundaria
         ]);
+        $segundoGradoSecundaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $terceroGradoSecundaria = Grados::create([
+            'descripcion'=>'Tercero',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $cuartoGradoSecundaria = Grados::create([
+            'descripcion'=>'Cuarto',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $quintoGradoSecundaria = Grados::create([
+            'descripcion'=>'Quinto',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
         //Periodo 2021
         $periodo = Periodos::create([
             'nombre'=>'2021'
