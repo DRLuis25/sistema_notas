@@ -2,24 +2,24 @@
     <table class="table" id="evaluaciones-table">
         <thead>
             <tr>
+                <th>@lang('models/evaluaciones.fields.periodo_id')</th>
                 <th>@lang('models/evaluaciones.fields.matricula_id')</th>
-        <th>@lang('models/evaluaciones.fields.periodo_id')</th>
-        <th>@lang('models/evaluaciones.fields.bimestre_id')</th>
-        <th>@lang('models/evaluaciones.fields.capacidad_id')</th>
-        <th>@lang('models/evaluaciones.fields.calificacion')</th>
-        <th>@lang('models/evaluaciones.fields.observaciones')</th>
+            <th>@lang('models/evaluaciones.fields.bimestre_id')</th>
+            <th>@lang('models/evaluaciones.fields.capacidad_id')</th>
+            <th>@lang('models/evaluaciones.fields.calificacion')</th>
+            <th>@lang('models/evaluaciones.fields.observaciones')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
         <tbody>
         @foreach($evaluaciones as $evaluaciones)
             <tr>
-                <td>{{ $evaluaciones->matricula_id }}</td>
-            <td>{{ $evaluaciones->periodo_id }}</td>
-            <td>{{ $evaluaciones->bimestre_id }}</td>
-            <td>{{ $evaluaciones->capacidad_id }}</td>
-            <td>{{ $evaluaciones->calificacion }}</td>
-            <td>{{ $evaluaciones->observaciones }}</td>
+                <td>{{ $evaluaciones->periodo->nombre }}</td>
+                <td>{{ $evaluaciones->matricula->nromatricula }}</td>
+                <td>{{ $evaluaciones->bimestre->nombre }}</td>
+                <td>{{ $evaluaciones->capacidad }}</td>
+                <td>{{ $evaluaciones->calificacion }}</td>
+                <td>{{ $evaluaciones->observaciones }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['evaluaciones.destroy', $evaluaciones->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

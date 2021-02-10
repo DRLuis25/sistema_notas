@@ -80,7 +80,14 @@ class Evaluaciones extends Model
      **/
     public function bimestre()
     {
-        return $this->belongsTo(\App\Models\Bimestre::class, 'bimestre_id');
+        return $this->belongsTo(Bimestres::class, 'bimestre_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function matricula()
+    {
+        return $this->belongsTo(MatriculaMaestro::class, 'matricula_id');
     }
 
     /**
@@ -88,7 +95,7 @@ class Evaluaciones extends Model
      **/
     public function capacidad()
     {
-        return $this->belongsTo(\App\Models\Capacidad::class, 'capacidad_id');
+        return $this->belongsTo(Capacidades::class, 'capacidad_id');
     }
 
     /**
@@ -96,6 +103,6 @@ class Evaluaciones extends Model
      **/
     public function periodo()
     {
-        return $this->belongsTo(\App\Models\Periodo::class, 'periodo_id');
+        return $this->belongsTo(Periodos::class, 'periodo_id');
     }
 }
