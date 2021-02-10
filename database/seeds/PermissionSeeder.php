@@ -69,6 +69,10 @@ class PermissionSeeder extends Seeder
             'nombre'=>'Arte',
             'nivel_id'=>$primaria->id
         ]);
+        $cursoMatematica = Cursos::create([
+            'nombre'=>'Matematica',
+            'nivel_id'=>$primaria->id
+        ]);
         //Secundaria
         $cursoHistoria = Cursos::create([
             'nombre'=>'Historia',
@@ -76,6 +80,14 @@ class PermissionSeeder extends Seeder
         ]);
         $cursoEducacionReligiosa = Cursos::create([
             'nombre'=>'Educación Religiosa',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoMatematicas = Cursos::create([
+            'nombre'=>'Matematica',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoPFRH = Cursos::create([
+            'nombre'=>'Persona Familia y Relaciones Humanas',
             'nivel_id'=>$secundaria->id
         ]);
         //Docentes
