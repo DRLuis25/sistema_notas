@@ -66,7 +66,27 @@ class PermissionSeeder extends Seeder
             'nivel_id'=>$primaria->id
         ]);
         $cursoArte = Cursos::create([
-            'nombre'=>'Arte',
+            'nombre'=>'Arte y Cultura',
+            'nivel_id'=>$primaria->id
+        ]);
+        $cursoMatematica = Cursos::create([
+            'nombre'=>'Matemática',
+            'nivel_id'=>$primaria->id
+        ]);
+        $cursoPersonalSocial = Cursos::create([
+            'nombre'=>'Personal Social',
+            'nivel_id'=>$primaria->id
+        ]);
+        $cursoEducacionFisica = Cursos::create([
+            'nombre'=>'Educación Física',
+            'nivel_id'=>$primaria->id
+        ]);
+        $cursoCiencia = Cursos::create([
+            'nombre'=>'Ciencia y Tecnología',
+            'nivel_id'=>$primaria->id
+        ]);
+        $cursoEducacionReligiosap = Cursos::create([
+            'nombre'=>'Educación Religiosa',
             'nivel_id'=>$primaria->id
         ]);
         //Secundaria
@@ -76,6 +96,38 @@ class PermissionSeeder extends Seeder
         ]);
         $cursoEducacionReligiosa = Cursos::create([
             'nombre'=>'Educación Religiosa',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoMatematicas = Cursos::create([
+            'nombre'=>'Matemática',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoDesarrollo = Cursos::create([
+            'nombre'=>'Desarrollo Personal,Ciudadanía y Cívica',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoCienciasSociales = Cursos::create([
+            'nombre'=>'Ciencias Sociales',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoEducacionFisicas = Cursos::create([
+            'nombre'=>'Educación Física',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoArtes = Cursos::create([
+            'nombre'=>'Arte y Cultura',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoComunicacions = Cursos::create([
+            'nombre'=>'Comunicación',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoCTA = Cursos::create([
+            'nombre'=>'Ciencia y Tecnología',
+            'nivel_id'=>$secundaria->id
+        ]);
+        $cursoEducacionPT = Cursos::create([
+            'nombre'=>'Educación para el Trabajo',
             'nivel_id'=>$secundaria->id
         ]);
         //Docentes
@@ -93,9 +145,41 @@ class PermissionSeeder extends Seeder
             'descripcion'=>'Segundo',
             'nivel_id'=>$primaria->id //Primaria
         ]);
+        $terceroGradoPrimaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$primaria->id //Primaria
+        ]);
+        $cuartoGradoPrimaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$primaria->id //Primaria
+        ]);
+        $quintoGradoPrimaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$primaria->id //Primaria
+        ]);
+        $sextoGradoPrimaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$primaria->id //Primaria
+        ]);
         //Secundaria
         $primerGradoSecundaria = Grados::create([
             'descripcion'=>'Primero',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $segundoGradoSecundaria = Grados::create([
+            'descripcion'=>'Segundo',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $terceroGradoSecundaria = Grados::create([
+            'descripcion'=>'Tercero',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $cuartoGradoSecundaria = Grados::create([
+            'descripcion'=>'Cuarto',
+            'nivel_id'=>$secundaria->id //Secundaria
+        ]);
+        $quintoGradoSecundaria = Grados::create([
+            'descripcion'=>'Quinto',
             'nivel_id'=>$secundaria->id //Secundaria
         ]);
         //Periodo 2021
