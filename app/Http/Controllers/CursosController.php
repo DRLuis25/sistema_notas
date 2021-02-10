@@ -95,6 +95,7 @@ class CursosController extends AppBaseController
      */
     public function edit($id)
     {
+        $niveles = Niveles::all();
         $cursos = $this->cursosRepository->find($id);
 
         if (empty($cursos)) {
@@ -103,7 +104,7 @@ class CursosController extends AppBaseController
             return redirect(route('cursos.index'));
         }
 
-        return view('cursos.edit')->with('cursos', $cursos);
+        return view('cursos.edit',compact('niveles'))->with('cursos', $cursos);
     }
 
     /**

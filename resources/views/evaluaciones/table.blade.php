@@ -4,10 +4,10 @@
             <tr>
                 <th>@lang('models/evaluaciones.fields.periodo_id')</th>
                 <th>@lang('models/evaluaciones.fields.matricula_id')</th>
-            <th>@lang('models/evaluaciones.fields.bimestre_id')</th>
-            <th>@lang('models/evaluaciones.fields.capacidad_id')</th>
-            <th>@lang('models/evaluaciones.fields.calificacion')</th>
-            <th>@lang('models/evaluaciones.fields.observaciones')</th>
+                <th>@lang('models/evaluaciones.fields.bimestre_id')</th>
+                <th>@lang('models/evaluaciones.fields.capacidad_id')</th>
+                <th>@lang('models/evaluaciones.fields.calificacion')</th>
+                <th>@lang('models/evaluaciones.fields.observaciones')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
