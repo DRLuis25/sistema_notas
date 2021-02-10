@@ -37,7 +37,11 @@
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivil', __('models/docentes.fields.estadoCivil').':') !!}
-    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
+    <select name="estadoCivil" id="estadoCivil" required class="form-control">
+        <option value="">Seleccione una opción</option>
+        <option value="Soltero">Soltero</option>
+        <option value="Casado">Casado</option>
+    </select>
 </div>
 
 <!-- Telefono Field -->

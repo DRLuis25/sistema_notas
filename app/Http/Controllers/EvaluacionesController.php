@@ -6,6 +6,8 @@ use App\Http\Requests\CreateEvaluacionesRequest;
 use App\Http\Requests\UpdateEvaluacionesRequest;
 use App\Repositories\EvaluacionesRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Niveles;
+use App\Models\Periodos;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +44,9 @@ class EvaluacionesController extends AppBaseController
      */
     public function create()
     {
-        return view('evaluaciones.create');
+        $periodo = Periodos::where('status','=','1')->first();
+        $niveles = Niveles::all();
+        return view('evaluaciones.create',compact(['periodo','niveles']));
     }
 
     /**
