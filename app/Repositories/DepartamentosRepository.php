@@ -17,6 +17,7 @@ class DepartamentosRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'id',
         'nombre'
     ];
 

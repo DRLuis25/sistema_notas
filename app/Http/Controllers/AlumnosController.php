@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAlumnosRequest;
 use App\Repositories\AlumnosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Alumnos;
 use Flash;
 use Response;
 
@@ -29,9 +30,10 @@ class AlumnosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $alumnos = $this->alumnosRepository->paginate(10);
+        $BuscarAlumnos = $request->get('BuscarAlumnos');
+        $alumnos = Alumnos::where('id','!=','0')->where('nombres','like','%'.$BuscarAlumnos.'%')->paginate(10);
 
-        return view('alumnos.index')
+        return view('alumnos.index',compact('BuscarAlumnos'))
             ->with('alumnos', $alumnos);
     }
 

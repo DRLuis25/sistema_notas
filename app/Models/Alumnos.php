@@ -32,6 +32,7 @@ class Alumnos extends Model
 
 
     public $fillable = [
+        'id',
         'dni',
         'nombres',
         'otrosNombres',

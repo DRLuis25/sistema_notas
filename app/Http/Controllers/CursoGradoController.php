@@ -11,6 +11,7 @@ use App\Models\Grados;
 use App\Models\Niveles;
 use App\Models\Periodos;
 use App\Models\Secciones;
+use App\Models\CursoGrado;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\DB;
@@ -36,9 +37,10 @@ class CursoGradoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cursoGrados = $this->cursoGradoRepository->paginate(10);
+        $BuscarCursosGrados = $request->get('BuscarCursosGrados');
+        $cursoGrados = CursoGrado::where('id','!=','0')->where('curso_id','like','%'.$BuscarCursosGrados.'%')->paginate(10);
 
-        return view('curso_grados.index')
+        return view('curso_grados.index',compact('BuscarCursosGrados'))
             ->with('cursoGrados', $cursoGrados);
     }
 

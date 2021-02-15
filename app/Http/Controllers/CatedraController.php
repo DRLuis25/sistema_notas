@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Docentes;
 use App\Models\Niveles;
 use App\Models\Periodos;
+use App\Models\Catedra;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -32,9 +33,10 @@ class CatedraController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $catedras = $this->catedraRepository->paginate(10);
+        $BuscarCatedras = $request->get('BuscarCatedras');
+        $catedras = Catedra::where('docente_id','!=','0')->where('docente_id','like','%'.$BuscarCatedras.'%')->paginate(10);
 
-        return view('catedras.index')
+        return view('catedras.index',compact('BuscarCatedras'))
             ->with('catedras', $catedras);
     }
 

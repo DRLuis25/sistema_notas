@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateDepartamentosRequest;
 use App\Repositories\DepartamentosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Departamentos;
 use Flash;
 use Response;
 
@@ -30,9 +31,10 @@ class DepartamentosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $departamentos = $this->departamentosRepository->all();
+        $BuscarDepartamentos = $request->get('BuscarDepartamentos');
+        $departamentos = Departamentos::where('id','!=','0')->where('nombre','like','%'.$BuscarDepartamentos.'%')->get();
 
-        return view('departamentos.index')
+        return view('departamentos.index',compact('BuscarDepartamentos'))
             ->with('departamentos', $departamentos);
     }
 

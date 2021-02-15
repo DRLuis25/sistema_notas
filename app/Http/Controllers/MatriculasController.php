@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateMatriculasRequest;
 use App\Repositories\MatriculasRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Matriculas;
 use Flash;
 use Response;
 
@@ -29,9 +30,10 @@ class MatriculasController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $matriculas = $this->matriculasRepository->paginate(10);
+        $BuscarMatriculas = $request->get('BuscarMatriculas');
+        $matriculas = Matriculas::where('matricula_id','!=','0')->where('matricula_id','like','%'.$BuscarMatriculas.'%')->paginate(10);
 
-        return view('matriculas.index')
+        return view('matriculas.index',compact('BuscarMatriculas'))
             ->with('matriculas', $matriculas);
     }
 

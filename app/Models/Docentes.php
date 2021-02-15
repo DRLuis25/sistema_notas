@@ -37,6 +37,7 @@ class Docentes extends Model
 
 
     public $fillable = [
+        'id',
         'dni',
         'nombres',
         'direccion',

@@ -28,6 +28,7 @@ class Departamentos extends Model
 
 
     public $fillable = [
+        'id',
         'nombre'
     ];
 

@@ -27,6 +27,7 @@ class Periodos extends Model
 
 
     public $fillable = [
+        'id',
         'nombre'
     ];
 

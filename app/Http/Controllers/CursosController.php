@@ -31,9 +31,10 @@ class CursosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cursos = $this->cursosRepository->all();
+        $BuscarCursos = $request->get('BuscarCursos');
+        $cursos = Cursos::where('nivel_id','!=','0')->where('nombre','like','%'.$BuscarCursos.'%')->get();
 
-        return view('cursos.index')
+        return view('cursos.index',compact('BuscarCursos'))
             ->with('cursos', $cursos);
     }
 

@@ -8,6 +8,7 @@ use App\Repositories\DocentesRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\DepartamentosRepository;
 use Illuminate\Http\Request;
+use App\Models\Docentes;
 use Flash;
 use Response;
 
@@ -35,9 +36,10 @@ class DocentesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $docentes = $this->docentesRepository->paginate(10);
+        $BuscarPersonal = $request->get('BuscarPersonal');
+        $docentes = Docentes::where('id','!=','0')->where('nombres','like','%'.$BuscarPersonal.'%')->paginate(10);
         
-        return view('docentes.index')
+        return view('docentes.index',compact('BuscarPersonal'))
             ->with('docentes', $docentes);
     }
 

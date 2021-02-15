@@ -34,6 +34,7 @@ class Secciones extends Model
 
 
     public $fillable = [
+        'id',
         'periodo_id',
         'letra',
         'nrovacantes',

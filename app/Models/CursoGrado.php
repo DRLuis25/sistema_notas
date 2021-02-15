@@ -32,6 +32,7 @@ class CursoGrado extends Model
 
 
     public $fillable = [
+        'id',
         'periodo_id',
         'curso_id',
         'grado_id'

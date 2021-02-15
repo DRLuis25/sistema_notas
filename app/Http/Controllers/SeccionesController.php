@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSeccionesRequest;
 use App\Repositories\SeccionesRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Secciones;
 use Flash;
 use Response;
 
@@ -29,9 +30,10 @@ class SeccionesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $secciones = $this->seccionesRepository->paginate(10);
+        $BuscarSecciones = $request->get('BuscarSecciones');
+        $secciones = Secciones::where('id','!=','0')->where('grado_id','like','%'.$BuscarSecciones.'%')->paginate(10);
 
-        return view('secciones.index')
+        return view('secciones.index',compact('BuscarSecciones'))
             ->with('secciones', $secciones);
     }
 

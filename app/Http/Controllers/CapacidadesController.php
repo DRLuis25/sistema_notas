@@ -8,6 +8,7 @@ use App\Repositories\CapacidadesRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Niveles;
 use App\Models\Periodos;
+use App\Models\Capacidades;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\DB;
@@ -32,9 +33,10 @@ class CapacidadesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $capacidades = $this->capacidadesRepository->paginate(10);
+        $BuscarCapacidades = $request->get('BuscarCapacidades');
+        $capacidades = Capacidades::where('id','!=','0')->where('asignatura','like','%'.$BuscarCapacidades.'%')->paginate(10);
 
-        return view('capacidades.index')
+        return view('capacidades.index',compact('BuscarCapacidades'))
             ->with('capacidades', $capacidades);
     }
 

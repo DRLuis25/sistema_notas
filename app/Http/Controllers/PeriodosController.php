@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePeriodosRequest;
 use App\Repositories\PeriodosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Periodos;
 use Flash;
 use Response;
 
@@ -30,9 +31,10 @@ class PeriodosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $periodos = $this->periodosRepository->all();
+        $BuscarPeriodos = $request->get('BuscarPeriodos');
+        $periodos = Periodos::where('id','!=','0')->where('nombre','like','%'.$BuscarPeriodos.'%')->get();
 
-        return view('periodos.index')
+        return view('periodos.index',compact('BuscarPeriodos'))
             ->with('periodos', $periodos);
     }
 

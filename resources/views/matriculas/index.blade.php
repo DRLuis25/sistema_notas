@@ -13,6 +13,13 @@
                        @lang('crud.add_new')
                     </a>
                 </div>
+                <br><br>
+                <div class="col-sm-12">
+                    <form class="form-inline my-2 my-lg-0 float-left">
+                        <input name="BuscarMatriculas" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$BuscarMatriculas}}">
+                        <button class="btn btn-success" type="submit">Buscar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

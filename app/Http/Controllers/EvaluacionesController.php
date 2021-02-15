@@ -8,6 +8,7 @@ use App\Repositories\EvaluacionesRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Niveles;
 use App\Models\Periodos;
+use App\Models\Evaluaciones;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -31,9 +32,10 @@ class EvaluacionesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $evaluaciones = $this->evaluacionesRepository->paginate(10);
+        $BuscarEvaluaciones = $request->get('BuscarEvaluaciones');
+        $evaluaciones = Evaluaciones::where('matricula_id','!=','0')->where('matricula_id','like','%'.$BuscarEvaluaciones.'%')->paginate(10);
 
-        return view('evaluaciones.index')
+        return view('evaluaciones.index',compact('BuscarEvaluaciones'))
             ->with('evaluaciones', $evaluaciones);
     }
 
