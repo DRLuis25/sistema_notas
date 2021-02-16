@@ -37,3 +37,55 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+<script>
+    $("#nivel_id").change(event => {
+        $.get(`/getGrados/${event.target.value}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#grado_id").empty();
+            $("#grado_id").append(`<option value=''> Seleccione Grado </option>`);
+            res.forEach(element => {
+                $("#grado_id").append(`<option value=${element.id}> ${element.descripcion} </option>`);
+            });
+        });
+
+        $.get(`/getSecciones/${event.target.value}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#seccion_id").empty();
+            $("#seccion_id").append(`<option value=''> Seleccione seccion</option>`);
+            res.forEach(element => {
+                $("#seccion_id").append(`<option value=${element.id}> ${element.letra} </option>`);
+            });
+        });
+
+        $.get(`/getCursos/${event.target.value}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#curso_id").empty();
+            $("#curso_id").append(`<option value=''> Seleccione curso </option>`);
+            res.forEach(element => {
+                $("#curso_id").append(`<option value=${element.id}> ${element.nombre} </option>`);
+            });
+        }); 
+    });
+
+    $("#periodo_id").change(event => {
+        $.get(`/getCapacidad/${event.target.value}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#capacidad_id").empty();
+            $("#capacidad_id").append(`<option value=''>Seleccione Capacidad</option>`);
+            res.forEach(element => {
+                $("#capacidad_id").append(`<option value=${element.id}> ${element.abreviatura} </option>`);
+            });
+        });
+    });
+</script>
+
+
+
+@endsection
+

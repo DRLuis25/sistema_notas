@@ -8,6 +8,8 @@ use App\Repositories\EvaluacionesRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Niveles;
 use App\Models\Periodos;
+use App\Models\Bimestres;
+use App\Models\Cursos;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -46,7 +48,9 @@ class EvaluacionesController extends AppBaseController
     {
         $periodo = Periodos::where('status','=','1')->first();
         $niveles = Niveles::all();
-        return view('evaluaciones.create',compact(['periodo','niveles']));
+        $bimestre= Bimestres::all();
+        $curso=Cursos::all();
+        return view('evaluaciones.create',compact(['periodo','niveles','bimestre','curso']));
     }
 
     /**

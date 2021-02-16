@@ -17,47 +17,39 @@
 <div class="form-group col-sm-2">
     {!! Form::label('grado_id', __('models/catedras.fields.grado_id').':') !!}
     <select name="grado_id" id="grado_id" required class="form-control">
-        <option value="">Seleccione nivel</option>
+        <option value="">Seleccione grado</option>
     </select>
 </div>
 <!-- Seccion Id Field -->
 <div class="form-group col-sm-2">
     {!! Form::label('seccion_id', __('models/catedras.fields.seccion_id').':') !!}
     <select name="seccion_id" id="seccion_id" required class="form-control">
-        <option value="">Seleccione grado</option>
+        <option value="">Seleccione sección</option>
     </select>
 </div>
 <!-- Curso Id Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('curso_id', __('models/catedras.fields.curso_id').':') !!}
     <select name="curso_id" id="curso_id" required class="form-control">
-        <option value="">Seleccione nivel</option>
+        <option value="">Seleccione curso</option>
     </select>
 </div>
-
-
 
 <!-- Capacidad Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('capacidad_id', __('models/evaluaciones.fields.capacidad_id').':') !!}
-    {!! Form::number('capacidad_id', null, ['class' => 'form-control']) !!}
+    <select name="capacidad_id" id="capacidad_id" required class="form-control">
+        <option value="">Seleccione Capacidad</option>
+    </select>
 </div>
 
 <!-- Bimestre Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('bimestre_id', __('models/evaluaciones.fields.bimestre_id').':') !!}
-    {!! Form::number('bimestre_id', null, ['class' => 'form-control']) !!}
-</div>
-<div class="">
-    <!-- Calificacion Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('calificacion', __('models/evaluaciones.fields.calificacion').':') !!}
-        {!! Form::number('calificacion', null, ['class' => 'form-control']) !!}
-    </div>
-    <!-- Calificacion Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('calificacion', __('models/evaluaciones.fields.calificacion').':') !!}
-        {!! Form::number('calificacion', null, ['class' => 'form-control']) !!}
-    </div>
-
+    <select name="bimestre_id" id="bimestre_id" required class="form-control">
+        <option value="">Seleccione Bimestre</option>
+        @foreach ($bimestre as $bim)
+        <option value="{{$bim->id}}">{{$bim->nombre}}</option>
+     @endforeach   
+    </select>
 </div>
