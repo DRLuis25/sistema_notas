@@ -13,13 +13,7 @@ class CreateDocentesTable extends Migration
      */
     public function up()
     {
-        Schema::create('departamento', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-        Schema::create('docente', function (Blueprint $table) {
+        /*Schema::create('docente', function (Blueprint $table) {
             $table->id();
             $table->string('dni',8);
             $table->string('nombres');
@@ -34,7 +28,7 @@ class CreateDocentesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('departamento_id', 'docente_has_departamento_ibfk_1')->references('id')->on('departamento');
-        });
+        });*/
         //No implementado
         Schema::create('catedra_docente', function (Blueprint $table) {
             $table->id();
@@ -47,7 +41,7 @@ class CreateDocentesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('periodo_id', 'catedra_docente_has_periodo_ibfk_1')->references('id')->on('periodo');
-            $table->foreign('docente_id', 'catedra_docente_has_docente_ibfk_1')->references('id')->on('docente');
+            $table->foreign('docente_id', 'catedra_docente_has_docente_ibfk_1')->references('id')->on('users');
             $table->foreign('curso_id', 'catedra_docente_has_curso_ibfk_1')->references('id')->on('curso');
             $table->foreign('grado_id', 'catedra_docente_has_grado_ibfk_1')->references('id')->on('grado');
             $table->foreign('seccion_id', 'catedra_docente_has_seccion_ibfk_1')->references('id')->on('seccion');

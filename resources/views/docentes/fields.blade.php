@@ -66,3 +66,17 @@
         @endforeach
     </select>
 </div>
+
+
+<!-- Rol Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('role', __('models/docentes.fields.role').':') !!}
+    <select name="role" id="role" class="form-control" required >
+        <option value="">Seleccione un rol</option>
+        @foreach ($roles as $item)
+            <option value="{{$item->name}}" @isset($usuarios)
+            @if (implode(" ",$usuarios->getRoleNames()->toArray())==$item->name){{'selected'}}             
+            @endif @endisset >{{$item->name}}</option>
+        @endforeach
+    </select>
+</div>

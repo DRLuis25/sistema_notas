@@ -15,7 +15,7 @@
         @foreach($catedras as $catedra)
             <tr>
                 <td>{{ $catedra->periodo->nombre }}</td>
-                <td>{{ $catedra->docente->apellidoPaterno }} {{ $catedra->docente->apellidoMaterno }}, {{ $catedra->docente->nombres }}</td>
+                <td>{{ $catedra->docente->apellidoPaterno }} {{ $catedra->docente->apellidoMaterno }}, {{ $catedra->docente->name }}</td>
                 <td>{{ $catedra->curso->nombre }}</td>
                 <td>{{ $catedra->grado->descripcion }}</td>
                 <td>{{ $catedra->seccion->letra }}</td>

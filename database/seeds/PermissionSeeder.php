@@ -29,6 +29,32 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+        
+        //Departamentos
+        $primaria=Departamentos::create([
+            'nombre'=>'Personal Docente Primaria',
+        ]);
+        $secundaria=Departamentos::create([
+            'nombre'=>'Personal Docente Secundaria',
+        ]);
+        //Roles del sistema
+        Role::create(['name' => 'user']);
+        Role::create(['name' => 'admin']);
+        // User temp
+        $admin = User::create([
+            'dni'=> '13245678',
+            'name'=>'Luis',
+            'direccion'=>'Direccion N',
+            'apellidoMaterno' => 'Howe',
+            'apellidoPaterno' => 'Raynor',
+            'email'=>'admin@gmail.com',
+            'estadoCivil'=>'Soltero',
+            'telefono' => '+5473520399808',
+            'seguroSocial'=>'10561414854',
+            'departamento_id' => '1',
+            'password'=>'$2y$10$cuf37o9lN0IkRFv73Q7IB.c5bDqCvog845XuTKHxSbMep/D04mknG' //password
+        ]);    
+        $admin->assignRole('admin');
         //Bimestres
 
         $primerBimestre=Bimestres::create([
@@ -49,14 +75,6 @@ class PermissionSeeder extends Seeder
         ]);
         $secundaria=Niveles::create([
             'descripcion'=>'Secundaria',
-        ]);
-
-        //Departamentos
-        $primaria=Departamentos::create([
-            'nombre'=>'Personal Docente Primaria',
-        ]);
-        $secundaria=Departamentos::create([
-            'nombre'=>'Personal Docente Secundaria',
         ]);
 
         //Cursos
@@ -131,7 +149,10 @@ class PermissionSeeder extends Seeder
             'nivel_id'=>$secundaria->id
         ]);
         //Docentes
-        factory(Docentes::class,20)->create();
+        $docentes = factory(User::class,20)->create();
+        foreach($docentes as $docente){
+            $docente->assignRole('user');
+         }
         //Alumnos
         factory(Alumnos::class,20)->create();
         
@@ -282,15 +303,5 @@ class PermissionSeeder extends Seeder
             'calificacion'=>'15',
             'observaciones'=>null
         ]);
-
-        //Usuarios del sistema
-
-        //User temp
-        $admin = User::create([
-            'name'=>'Admin',
-            'email'=>'admin@gmail.com',
-            'password'=>'$2y$10$cuf37o9lN0IkRFv73Q7IB.c5bDqCvog845XuTKHxSbMep/D04mknG' //password
-        ]);
-        
     }
 }

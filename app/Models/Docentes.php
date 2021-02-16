@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \App\Models\Departamento $departamento
  * @property string $dni
- * @property string $nombres
+ * @property string $name
  * @property string $direccion
  * @property string $apellidoPaterno
  * @property string $apellidoMaterno
@@ -26,7 +26,7 @@ class Docentes extends Model
 {
     use SoftDeletes;
 
-    public $table = 'docente';
+    public $table = 'users';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -38,7 +38,7 @@ class Docentes extends Model
 
     public $fillable = [
         'dni',
-        'nombres',
+        'name',
         'direccion',
         'apellidoPaterno',
         'apellidoMaterno',
@@ -46,7 +46,8 @@ class Docentes extends Model
         'estadoCivil',
         'telefono',
         'seguroSocial',
-        'departamento_id'
+        'departamento_id',
+        'password',
     ];
 
     /**

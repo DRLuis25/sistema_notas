@@ -10,6 +10,7 @@ use App\Repositories\DepartamentosRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Spatie\Permission\Models\Role;
 
 class DocentesController extends AppBaseController
 {
@@ -48,8 +49,9 @@ class DocentesController extends AppBaseController
      */
     public function create()
     {
+        $roles = Role::all();
         $departamentos = $this->departamentosRepository->all();
-        return view('docentes.create',compact('departamentos'));
+        return view('docentes.create',compact('departamentos','roles'));
     }
 
     /**
