@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCursoGradoRequest;
 use App\Http\Requests\UpdateCursoGradoRequest;
 use App\Repositories\CursoGradoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\CursoGrado;
 use App\Models\Cursos;
 use App\Models\Grados;
 use App\Models\Niveles;
@@ -185,6 +186,15 @@ class CursoGradoController extends AppBaseController
         {
             $secciones = Secciones::where('grado_id','=',$id)->get();
             return response()->json($secciones);
+        }
+    }
+    public function listarCursoGrado(request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $periodo = Periodos::where('status','=','1')->first();
+            $cursos = CursoGrado::join('curso as c','c.id','=','curso_grado.curso_id')->where('grado_id','=',$id)->where('periodo_id','=',$periodo->id)->get();
+            return response()->json($cursos);
         }
     }
 }

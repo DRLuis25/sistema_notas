@@ -6,8 +6,11 @@ use App\Http\Requests\CreateAlumnosRequest;
 use App\Http\Requests\UpdateAlumnosRequest;
 use App\Repositories\AlumnosRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Alumnos;
+use App\Models\MatriculaMaestro;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class AlumnosController extends AppBaseController
@@ -54,13 +57,21 @@ class AlumnosController extends AppBaseController
      */
     public function store(CreateAlumnosRequest $request)
     {
-        $input = $request->all();
-
-        $alumnos = $this->alumnosRepository->create($input);
-
-        Flash::success(__('messages.saved', ['model' => __('models/alumnos.singular')]));
-
-        return redirect(route('alumnos.index'));
+        try {
+            DB::beginTransaction();
+            $input = $request->all();
+            $alumnos = $this->alumnosRepository->create($input);
+            //Generar matricula
+            $matricula = new MatriculaMaestro();
+            $matricula->nromatricula = $alumnos->dni.substr(date("Y"),-2);
+            $matricula->alumno_id = $alumnos->id;
+            $matricula->save();
+            DB::commit();
+            Flash::success(__('messages.saved', ['model' => __('models/alumnos.singular')]));
+            return redirect(route('alumnos.index'));
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
@@ -152,5 +163,13 @@ class AlumnosController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/alumnos.singular')]));
 
         return redirect(route('alumnos.index'));
+    }
+    public function listarNroMatricula(request $request,$id)
+    {
+        if($request->ajax())
+        {
+            $matricula = MatriculaMaestro::where('alumno_id','=',$id)->first();
+            return response()->json($matricula);
+        }
     }
 }

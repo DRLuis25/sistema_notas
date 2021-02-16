@@ -63,8 +63,8 @@ class Matriculas extends Model
         'matricula_id' => 'required',
         'periodo_id' => 'required',
         'seccion_id' => 'required',
-        'observaciones' => 'required|string|max:255',
-        'exonerado' => 'nullable|string|max:255',
+        'observaciones' => 'nullable|string|max:255',
+        'exonerado' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -73,7 +73,7 @@ class Matriculas extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function matricula()
+    public function matriculamaestro()
     {
         return $this->belongsTo(MatriculaMaestro::class, 'matricula_id');
     }
