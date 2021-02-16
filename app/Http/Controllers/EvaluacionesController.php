@@ -48,9 +48,8 @@ class EvaluacionesController extends AppBaseController
     {
         $periodo = Periodos::where('status','=','1')->first();
         $niveles = Niveles::all();
-        $bimestre= Bimestres::all();
         $curso=Cursos::all();
-        return view('evaluaciones.create',compact(['periodo','niveles','bimestre','curso']));
+        return view('evaluaciones.create',compact(['periodo','niveles','curso']));
     }
 
     /**
