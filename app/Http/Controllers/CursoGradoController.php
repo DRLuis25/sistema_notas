@@ -111,15 +111,19 @@ class CursoGradoController extends AppBaseController
      */
     public function edit($id)
     {
+        $periodo = Periodos::where('status','=','1')->first();
+        //return $periodo;
+        $niveles = Niveles::all();
         $cursoGrado = $this->cursoGradoRepository->find($id);
-
+        $cursos = $cursoGrado->curso->nivel->cursos;
+        $grados = $cursoGrado->grado->nivel->grados;
         if (empty($cursoGrado)) {
             Flash::error(__('messages.not_found', ['model' => __('models/cursoGrados.singular')]));
 
             return redirect(route('cursoGrados.index'));
         }
 
-        return view('curso_grados.edit')->with('cursoGrado', $cursoGrado);
+        return view('curso_grados.edit',compact('periodo','niveles','cursos','grados'))->with('cursoGrado', $cursoGrado);
     }
 
     /**
