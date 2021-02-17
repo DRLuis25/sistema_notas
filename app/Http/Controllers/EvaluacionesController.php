@@ -161,4 +161,10 @@ class EvaluacionesController extends AppBaseController
 
         return redirect(route('evaluaciones.index'));
     }
+    public function listarAlumnos(Request $request)
+    {
+        return $request;
+        return "Lista alumnos";
+        return view('evaluaciones.listaralumnos');
+    }
 }

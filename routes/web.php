@@ -39,6 +39,7 @@ Route::resource('cursoGrados', 'CursoGradoController');
 Route::get('getCursos/{id}','CursosController@listarCursos');
 Route::get('getGrados/{id}','CursoGradoController@listarGrados');
 Route::get('getSecciones/{id}','CursoGradoController@listarSecciones');
+Route::get('getCapacidad/{curso}/{grado}','CapacidadesController@listarCapacidades');
 Route::resource('secciones', 'SeccionesController');
 
 Route::resource('capacidades', 'CapacidadesController');
@@ -46,5 +47,7 @@ Route::resource('capacidades', 'CapacidadesController');
 Route::resource('matriculas', 'MatriculasController');
 
 Route::resource('evaluaciones', 'EvaluacionesController');
+
+Route::get('listaralumnos', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.alumnos');
 
 Route::resource('catedras', 'CatedraController');

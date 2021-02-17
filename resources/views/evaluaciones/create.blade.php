@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'evaluaciones.store']) !!}
+            {!! Form::open(['route' => 'evaluaciones.alumnos','method'=>'get']) !!}
 
             <div class="card-body">
 
@@ -28,7 +28,7 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Continuar', ['class' => 'btn btn-primary']) !!}
                 <a href="{{ route('evaluaciones.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
             </div>
 
@@ -72,8 +72,23 @@
         }); 
     });
 
-    $("#periodo_id").change(event => {
-        $.get(`/getCapacidad/${event.target.value}`, function(res, sta){
+    $("#bimestre_id").change(event => {
+        let x = $("#grado_id").val();
+        let y = $("#curso_id").val();
+        console.log(x);
+        console.log(y);
+        $.get(`/getCapacidad/${y}/${x}`, function(res, sta){
+            console.log(res);
+            console.log(sta);
+            $("#capacidad_id").empty();
+            $("#capacidad_id").append(`<option value=''>Seleccione Capacidad</option>`);
+            res.forEach(element => {
+                $("#capacidad_id").append(`<option value=${element.id}> ${element.abreviatura} </option>`);
+            });
+        });
+    });
+    $("#capacidad_id").change(event => {
+        $.get(`/getAlumnos/${y}`, function(res, sta){
             console.log(res);
             console.log(sta);
             $("#capacidad_id").empty();

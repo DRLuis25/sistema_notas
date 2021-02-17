@@ -34,6 +34,16 @@
         <option value="">Seleccione curso</option>
     </select>
 </div>
+<!-- Bimestre Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('bimestre_id', __('models/evaluaciones.fields.bimestre_id').':') !!}
+    <select name="bimestre_id" id="bimestre_id" required class="form-control">
+        <option value="">Seleccione Bimestre</option>
+        @foreach ($bimestre as $bim)
+            <option value="{{$bim->id}}">{{$bim->nombre}}</option>
+        @endforeach   
+    </select>
+</div>
 
 <!-- Capacidad Id Field -->
 <div class="form-group col-sm-6">
@@ -43,13 +53,3 @@
     </select>
 </div>
 
-<!-- Bimestre Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('bimestre_id', __('models/evaluaciones.fields.bimestre_id').':') !!}
-    <select name="bimestre_id" id="bimestre_id" required class="form-control">
-        <option value="">Seleccione Bimestre</option>
-        @foreach ($bimestre as $bim)
-        <option value="{{$bim->id}}">{{$bim->nombre}}</option>
-     @endforeach   
-    </select>
-</div>
