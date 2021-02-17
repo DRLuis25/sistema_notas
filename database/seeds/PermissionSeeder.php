@@ -29,7 +29,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        
         //Departamentos
         $primaria=Departamentos::create([
             'nombre'=>'Personal Docente Primaria',
