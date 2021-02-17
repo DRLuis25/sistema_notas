@@ -13,5 +13,6 @@ return array (
     'created_at' => 'Creado el',
     'updated_at' => 'Actualizado el',
     'deleted_at' => 'Eliminado el',
+    'alumno_id' => 'Alumno'
   ),
 );

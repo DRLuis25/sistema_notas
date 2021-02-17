@@ -130,9 +130,9 @@ return [
 
         'localized' => true,
 
-        'tables_searchable_default' => false,
+        'tables_searchable_default' => true,
 
-        'repository_pattern' => true,
+        'repository_pattern' => false,
 
         'resources' => false,
 

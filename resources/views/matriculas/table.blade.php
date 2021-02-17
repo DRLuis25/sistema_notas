@@ -14,21 +14,21 @@
         <tbody>
         @foreach($matriculas as $matriculas)
             <tr>
-                <td>{{ $matriculas->matricula->nromatricula }}</td>
-                <td>{{ $matriculas->matricula->alumno->apellidoPaterno }} {{ $matriculas->matricula->alumno->apellidoMaterno }}, {{ $matriculas->matricula->alumno->nombres }}</td>
+                <td>{{ $matriculas->matriculamaestro->nromatricula }}</td>
+                <td>{{ $matriculas->matriculamaestro->alumno->apellidoPaterno }} {{ $matriculas->matriculamaestro->alumno->apellidoMaterno }}, {{ $matriculas->matriculamaestro->alumno->nombres }}</td>
                 <td>{{ $matriculas->periodo->nombre }}</td>
                 <td>{{ $matriculas->seccion->letra }}</td>
                 <td>{{ $matriculas->observaciones }}</td>
                 <td>
-                    {{ $matriculas->exonerado }}
+                    {{ $matriculas->exonerados }}
                 </td>
                 <td width="120">
                     <!--arreglar el id para las acciones-->
                     {!! Form::open(['route' => ['matriculas.destroy', $matriculas->matricula_id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('matriculas.show', [$matriculas->matricula_id]) }}" class='btn btn-default btn-xs'>
+                        {{-- <a href="{{ route('matriculas.show', [$matriculas->matricula_id]) }}" class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
-                        </a>
+                        </a> --}}
                         <a href="{{ route('matriculas.edit', [$matriculas->matricula_id]) }}" class='btn btn-default btn-xs'>
                         <i class="far fa-edit"></i>
                         </a>

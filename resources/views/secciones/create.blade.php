@@ -37,3 +37,16 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+    $("#nivel_id").change(event => {
+        $.get(`/getGrados/${event.target.value}`, function(res, sta){
+            $("#grado_id").empty();
+            $("#grado_id").append(`<option value=''> Seleccione grado </option>`);
+            res.forEach(element => {
+                $("#grado_id").append(`<option value=${element.id}> ${element.descripcion} </option>`);
+            });
+        });
+    });
+</script>
+@endsection

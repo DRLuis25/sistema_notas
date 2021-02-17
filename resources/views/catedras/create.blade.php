@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -39,6 +38,7 @@
 @endsection
 @section('script')
 <script>
+
     $("#nivel_id").change(event => {
         $.get(`/getCursos/${event.target.value}`, function(res, sta){
             console.log(res);
@@ -56,6 +56,8 @@
                 $("#grado_id").append(`<option value=${element.id}> ${element.descripcion} </option>`);
             });
         });
+        $("#seccion_id").empty();
+        $("#seccion_id").append(`<option value=''> Seleccione grado </option>`);
     });
     $("#grado_id").change(event => {
         $.get(`/getSecciones/${event.target.value}`, function(res, sta){

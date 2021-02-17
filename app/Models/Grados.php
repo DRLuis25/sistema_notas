@@ -97,9 +97,9 @@ class Grados extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function seccions()
+    public function secciones()
     {
-        return $this->hasMany(\App\Models\Seccion::class, 'grado_id');
+        return $this->hasMany(Secciones::class, 'grado_id');
     }
 
     /**

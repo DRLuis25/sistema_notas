@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -90,7 +91,7 @@ class Catedra extends Model
      **/
     public function docente()
     {
-        return $this->belongsTo(Docentes::class, 'docente_id');
+        return $this->belongsTo(User::class, 'docente_id');
     }
 
     /**

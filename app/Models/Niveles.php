@@ -59,7 +59,7 @@ class Niveles extends Model
      **/
     public function cursos()
     {
-        return $this->hasMany(\App\Models\Curso::class, 'nivel_id');
+        return $this->hasMany(Cursos::class, 'nivel_id');
     }
 
     /**
@@ -67,6 +67,6 @@ class Niveles extends Model
      **/
     public function grados()
     {
-        return $this->hasMany(\App\Models\Grado::class, 'nivel_id');
+        return $this->hasMany(Grados::class, 'nivel_id');
     }
 }

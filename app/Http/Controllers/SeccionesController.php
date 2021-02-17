@@ -6,6 +6,8 @@ use App\Http\Requests\CreateSeccionesRequest;
 use App\Http\Requests\UpdateSeccionesRequest;
 use App\Repositories\SeccionesRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Niveles;
+use App\Models\Periodos;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +44,9 @@ class SeccionesController extends AppBaseController
      */
     public function create()
     {
-        return view('secciones.create');
+        $niveles = Niveles::all();
+        $periodo = Periodos::where('status','=','1')->first();
+        return view('secciones.create',compact('periodo','niveles'));
     }
 
     /**
@@ -92,15 +96,17 @@ class SeccionesController extends AppBaseController
      */
     public function edit($id)
     {
+        $periodo = Periodos::where('status','=','1')->first();
         $secciones = $this->seccionesRepository->find($id);
-
+        $niveles = Niveles::all();
+        $grados = $secciones->grado->nivel->grados;
         if (empty($secciones)) {
             Flash::error(__('messages.not_found', ['model' => __('models/secciones.singular')]));
 
             return redirect(route('secciones.index'));
         }
 
-        return view('secciones.edit')->with('secciones', $secciones);
+        return view('secciones.edit',compact('periodo','niveles','grados'))->with('secciones', $secciones);
     }
 
     /**

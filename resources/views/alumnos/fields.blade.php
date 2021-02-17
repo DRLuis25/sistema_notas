@@ -1,7 +1,7 @@
 <!-- Dni Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('dni', __('models/alumnos.fields.dni').':') !!}
-    {!! Form::text('dni', null, ['class' => 'form-control']) !!}
+    {!! Form::text('dni', null, ['class' => 'form-control','onkeypress'=>'return event.charCode >= 48 && event.charCode <= 57']) !!}
 </div>
 
 <!-- Nombres Field -->

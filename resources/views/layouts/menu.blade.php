@@ -86,5 +86,3 @@
         <p>@lang('models/catedras.plural')</p>
     </a>
 </li>
-
-

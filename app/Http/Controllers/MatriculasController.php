@@ -6,8 +6,15 @@ use App\Http\Requests\CreateMatriculasRequest;
 use App\Http\Requests\UpdateMatriculasRequest;
 use App\Repositories\MatriculasRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Alumnos;
+use App\Models\CursoGrado;
+use App\Models\Matriculas;
+use App\Models\Niveles;
+use App\Models\Periodos;
+use App\Models\Secciones;
 use Illuminate\Http\Request;
 use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
 class MatriculasController extends AppBaseController
@@ -27,12 +34,19 @@ class MatriculasController extends AppBaseController
      *
      * @return Response
      */
+    const PAGINATION=10;
     public function index(Request $request)
     {
-        $matriculas = $this->matriculasRepository->paginate(10);
-
-        return view('matriculas.index')
+        $periodo = Periodos::where('status','=','1')->first();
+        
+        try {
+            $matriculas = $this->matriculasRepository->buscarperiodo($periodo->id)->paginate(10);
+            return view('matriculas.index')
             ->with('matriculas', $matriculas);
+        } catch (\Throwable $th) {
+            //Flash::error etc
+        }
+
     }
 
     /**
@@ -42,7 +56,10 @@ class MatriculasController extends AppBaseController
      */
     public function create()
     {
-        return view('matriculas.create');
+        $periodo = Periodos::where('status','=','1')->first();
+        $niveles = Niveles::all();
+        $alumnos = Alumnos::all();
+        return view('matriculas.create',compact(['niveles','alumnos','periodo']));
     }
 
     /**
@@ -54,6 +71,7 @@ class MatriculasController extends AppBaseController
      */
     public function store(CreateMatriculasRequest $request)
     {
+        return $request;
         $input = $request->all();
 
         $matriculas = $this->matriculasRepository->create($input);
@@ -92,15 +110,16 @@ class MatriculasController extends AppBaseController
      */
     public function edit($id)
     {
-        $matriculas = $this->matriculasRepository->find($id);
-
+        $periodo = Periodos::where('status','=','1')->first();
+        $matriculas = Matriculas::where('matricula_id','=',$id)->where('periodo_id','=',$periodo->id)->first();
+        $secciones = Secciones::where('id','=',$matriculas->seccion_id)->first()->grado->secciones;
+        $exonerados = CursoGrado::join('curso as c','c.id','=','curso_grado.curso_id')->where('grado_id','=',Secciones::where('id','=',$matriculas->seccion_id)->first()->grado->id)->where('periodo_id','=',$periodo->id)->get();
         if (empty($matriculas)) {
             Flash::error(__('messages.not_found', ['model' => __('models/matriculas.singular')]));
 
             return redirect(route('matriculas.index'));
         }
-
-        return view('matriculas.edit')->with('matriculas', $matriculas);
+        return view('matriculas.edit',compact(['periodo','secciones','exonerados']))->with('matriculas', $matriculas);
     }
 
     /**
@@ -113,15 +132,21 @@ class MatriculasController extends AppBaseController
      */
     public function update($id, UpdateMatriculasRequest $request)
     {
-        $matriculas = $this->matriculasRepository->find($id);
+        $periodo = Periodos::where('status','=','1')->first();
+        $matriculas = Matriculas::where('matricula_id','=',$id)->where('periodo_id','=',$periodo->id)->first();
 
         if (empty($matriculas)) {
             Flash::error(__('messages.not_found', ['model' => __('models/matriculas.singular')]));
 
             return redirect(route('matriculas.index'));
         }
+        //Guardar cambios;
+        //return $matriculas;
+        $matriculas->seccion_id = $request->seccion_id;
+        $matriculas->observaciones = $request->observaciones;
+        $matriculas->save();
+        //actualizar exonerados
 
-        $matriculas = $this->matriculasRepository->update($request->all(), $id);
 
         Flash::success(__('messages.updated', ['model' => __('models/matriculas.singular')]));
 
