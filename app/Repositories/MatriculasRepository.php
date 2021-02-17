@@ -41,4 +41,12 @@ class MatriculasRepository extends BaseRepository
     {
         return Matriculas::class;
     }
+    public function buscar($id)
+    {
+        return Matriculas::where('matricula_id','=',$id);
+    }
+    public function buscarperiodo($id)
+    {
+        return Matriculas::where('periodo_id','=',$id);
+    }
 }

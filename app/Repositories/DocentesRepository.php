@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Docentes;
+use App\User;
 use App\Repositories\BaseRepository;
 
 /**
@@ -44,6 +44,6 @@ class DocentesRepository extends BaseRepository
      **/
     public function model()
     {
-        return Docentes::class;
+        return User::class;
     }
 }

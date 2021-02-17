@@ -5,7 +5,7 @@ return array (
   'plural' => 'Matriculas',
   'fields' => 
   array (
-    'matricula_id' => 'Nro Matricula',
+    'matricula_id' => 'Número de Matrícula',
     'periodo_id' => 'Periodo',
     'seccion_id' => 'Seccion',
     'observaciones' => 'Observaciones',

@@ -41,8 +41,6 @@
 <script>
     $("#nivel_id").change(event => {
         $.get(`/getCursos/${event.target.value}`, function(res, sta){
-            console.log(res);
-            console.log(sta);
             $("#curso_id").empty();
             $("#curso_id").append(`<option value=''> Seleccione curso </option>`);
             res.forEach(element => {
@@ -57,6 +55,5 @@
             });
         });
     });
-
 </script>
 @endsection

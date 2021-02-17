@@ -61,12 +61,12 @@ class Alumnos extends Model
      * @var array
      */
     public static $rules = [
-        'dni' => 'required|string|max:8',
+        'dni' => 'unique:alumno|required|string|max:8|min:8',
         'nombres' => 'required|string|max:255',
         'otrosNombres' => 'required|string|max:255',
         'apellidoPaterno' => 'required|string|max:255',
         'apellidoMaterno' => 'required|string|max:255',
-        'email' => 'required|string|max:255',
+        'email' => 'unique:alumno|required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

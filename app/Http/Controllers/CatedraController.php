@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Docentes;
 use App\Models\Niveles;
 use App\Models\Periodos;
+use App\User;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -46,7 +47,7 @@ class CatedraController extends AppBaseController
     public function create()
     {
         $periodo = Periodos::where('status','=','1')->first();
-        $docentes = Docentes::all();
+        $docentes = User::all();
         $niveles = Niveles::all();
         return view('catedras.create',compact(['periodo','docentes','niveles']));
     }
@@ -98,15 +99,16 @@ class CatedraController extends AppBaseController
      */
     public function edit($id)
     {
+        $periodo = Periodos::where('status','=','1')->first();
         $catedra = $this->catedraRepository->find($id);
-
+        $niveles = Niveles::all();
         if (empty($catedra)) {
             Flash::error(__('messages.not_found', ['model' => __('models/catedras.singular')]));
 
             return redirect(route('catedras.index'));
         }
 
-        return view('catedras.edit')->with('catedra', $catedra);
+        return view('catedras.edit',compact('periodo','niveles'))->with('catedra', $catedra);
     }
 
     /**

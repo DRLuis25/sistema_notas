@@ -10,6 +10,7 @@ use App\Repositories\DepartamentosRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Spatie\Permission\Models\Role;
 
 class DocentesController extends AppBaseController
 {
@@ -48,8 +49,9 @@ class DocentesController extends AppBaseController
      */
     public function create()
     {
+        $roles = Role::all();
         $departamentos = $this->departamentosRepository->all();
-        return view('docentes.create',compact('departamentos'));
+        return view('docentes.create',compact('departamentos','roles'));
     }
 
     /**
@@ -99,6 +101,8 @@ class DocentesController extends AppBaseController
      */
     public function edit($id)
     {
+        $roles = Role::all();
+        $departamentos = $this->departamentosRepository->all();
         $docentes = $this->docentesRepository->find($id);
 
         if (empty($docentes)) {
@@ -107,7 +111,7 @@ class DocentesController extends AppBaseController
             return redirect(route('docentes.index'));
         }
 
-        return view('docentes.edit')->with('docentes', $docentes);
+        return view('docentes.edit',compact('roles','departamentos'))->with('docentes', $docentes);
     }
 
     /**

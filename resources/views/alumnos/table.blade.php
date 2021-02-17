@@ -3,11 +3,11 @@
         <thead>
             <tr>
                 <th>@lang('models/alumnos.fields.dni')</th>
-        <th>@lang('models/alumnos.fields.nombres')</th>
-        <th>@lang('models/alumnos.fields.otrosNombres')</th>
-        <th>@lang('models/alumnos.fields.apellidoPaterno')</th>
-        <th>@lang('models/alumnos.fields.apellidoMaterno')</th>
-        <th>@lang('models/alumnos.fields.email')</th>
+                <th>@lang('models/alumnos.fields.nombres')</th>
+                <th>@lang('models/alumnos.fields.otrosNombres')</th>
+                <th>@lang('models/alumnos.fields.apellidoPaterno')</th>
+                <th>@lang('models/alumnos.fields.apellidoMaterno')</th>
+                <th>@lang('models/alumnos.fields.email')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>

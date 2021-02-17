@@ -15,7 +15,7 @@
         @foreach($catedras as $catedra)
             <tr>
                 <td>{{ $catedra->periodo->nombre }}</td>
-                <td>{{ $catedra->docente->apellidoPaterno }} {{ $catedra->docente->apellidoMaterno }}, {{ $catedra->docente->nombres }}</td>
+                <td>{{ $catedra->docente->apellidoPaterno }} {{ $catedra->docente->apellidoMaterno }}, {{ $catedra->docente->name }}</td>
                 <td>{{ $catedra->curso->nombre }}</td>
                 <td>{{ $catedra->grado->descripcion }}</td>
                 <td>{{ $catedra->seccion->letra }}</td>
@@ -23,9 +23,6 @@
                 <td width="120">
                     {!! Form::open(['route' => ['catedras.destroy', $catedra->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('catedras.show', [$catedra->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-eye"></i>
-                        </a>
                         <a href="{{ route('catedras.edit', [$catedra->id]) }}" class='btn btn-default btn-xs'>
                         <i class="far fa-edit"></i>
                         </a>

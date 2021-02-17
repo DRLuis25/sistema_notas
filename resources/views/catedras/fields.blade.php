@@ -2,17 +2,17 @@
 <div class="form-group col-sm-6">
     {!! Form::label('periodo_id', __('models/cursoGrados.fields.periodo_id').':') !!}
     {!! Form::label('periodo_id', $periodo->nombre, ['class' => 'form-control']) !!}
-    {!! Form::hidden('periodo_id', $periodo->nombre, ['class' => 'form-control']) !!}
+    {!! Form::hidden('periodo_id', $periodo->id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Docente Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('docente_id', __('models/catedras.fields.docente_id').':') !!}
     
-    <select name="docente_id" id="docente_id" required class="form-control">
+    <select name="docente_id" id="docente_id" class="form-control select2 selectpicker"  style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true" id="cliente_id" name="cliente_id" data-live-search="true" required>
         <option value="">Seleccione docente</option>
         @foreach ($docentes as $docente)
-            <option value="{{$docente->id}}">{{ $docente->apellidoPaterno }} {{ $docente->apellidoMaterno }}, {{ $docente->nombres }}</option>
+            <option value="{{$docente->id}}">{{ $docente->apellidoPaterno }} {{ $docente->apellidoMaterno }}, {{ $docente->name }}</option>
         @endforeach
     </select>
 </div>
@@ -51,14 +51,7 @@
 <!-- Nrohoras Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nrohoras', __('models/catedras.fields.nrohoras').':') !!}
-    {!! Form::date('nrohoras', null, ['class' => 'form-control','id'=>'nrohoras']) !!}
+    {!! Form::time('nrohoras', null, ['class' => 'form-control','id'=>'nrohoras','min'=>'01:00', 'max'=>'8:00']) !!}
 </div>
 
-@push('scripts')
-    <script type="text/javascript">
-        $('#nrohoras').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
+
