@@ -86,3 +86,9 @@
         <p>@lang('models/catedras.plural')</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('catedras.index') }}"
+       class="nav-link {{ Request::is('catedras*') ? 'active' : '' }}">
+        <p>Reportes</p>
+    </a>
+</li>
