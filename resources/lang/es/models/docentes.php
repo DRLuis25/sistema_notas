@@ -6,7 +6,7 @@ return array (
   'fields' => 
   array (
     'id' => 'Código',
-    'dni' => 'Dni',
+    'dni' => 'DNI',
     'nombres' => 'Nombres',
     'direccion' => 'Dirección',
     'apellidoPaterno' => 'Apellido Paterno',
@@ -20,5 +20,6 @@ return array (
     'updated_at' => 'Actualizado el',
     'deleted_at' => 'Eliminado el',
     'role'=>'Rol',
+    'password'=>'Contraseña'
   ),
 );

@@ -24,7 +24,7 @@ class Matriculas extends Model
     use SoftDeletes;
 
     public $table = 'matricula_detalle';
-    
+    protected $primaryKey = 'matricula_id';    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

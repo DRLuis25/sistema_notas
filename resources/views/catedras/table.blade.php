@@ -23,9 +23,6 @@
                 <td width="120">
                     {!! Form::open(['route' => ['catedras.destroy', $catedra->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('catedras.show', [$catedra->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-eye"></i>
-                        </a>
                         <a href="{{ route('catedras.edit', [$catedra->id]) }}" class='btn btn-default btn-xs'>
                         <i class="far fa-edit"></i>
                         </a>

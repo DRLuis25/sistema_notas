@@ -6,15 +6,10 @@
 
 <!-- Nombres Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nombres', __('models/docentes.fields.nombres').':') !!}
-    {!! Form::text('nombres', null, ['class' => 'form-control']) !!}
+    {!! Form::label('name', __('models/docentes.fields.nombres').':') !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Direccion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('direccion', __('models/docentes.fields.direccion').':') !!}
-    {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Apellidopaterno Field -->
 <div class="form-group col-sm-6">
@@ -28,19 +23,31 @@
     {!! Form::text('apellidoMaterno', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Direccion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('direccion', __('models/docentes.fields.direccion').':') !!}
+    {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Email Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('email', __('models/docentes.fields.email').':') !!}
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
-
+<!-- Password Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('password', __('models/docentes.fields.password').':') !!}
+    {!! Form::password('password', ['class' => 'form-control']) !!}
+</div>
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivil', __('models/docentes.fields.estadoCivil').':') !!}
     <select name="estadoCivil" id="estadoCivil" required class="form-control">
         <option value="">Seleccione una opción</option>
-        <option value="Soltero">Soltero</option>
-        <option value="Casado">Casado</option>
+        <option value="Soltero"@if ("Soltero"==$docentes->estadoCivil){{'selected'}}             
+            @endif>Soltero</option>
+        <option value="Casado"@if ("Casado"==$docentes->estadoCivil){{'selected'}}             
+            @endif>Casado</option>
     </select>
 </div>
 
@@ -62,7 +69,8 @@
     <select class="form-control" name='departamento_id' value="" required>
         <option value="">Seleccione departamento</option>
         @foreach ($departamentos as $departamento)
-        <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+        <option value="{{$departamento->id}}"@if ($departamento->id==$docentes->departamento_id){{'selected'}}             
+            @endif>{{$departamento->nombre}}</option>
         @endforeach
     </select>
 </div>
@@ -74,8 +82,8 @@
     <select name="role" id="role" class="form-control" required >
         <option value="">Seleccione un rol</option>
         @foreach ($roles as $item)
-            <option value="{{$item->name}}" @isset($usuarios)
-            @if (implode(" ",$usuarios->getRoleNames()->toArray())==$item->name){{'selected'}}             
+            <option value="{{$item->name}}" @isset($docentes)
+            @if (implode(" ",$docentes->getRoleNames()->toArray())==$item->name){{'selected'}}             
             @endif @endisset >{{$item->name}}</option>
         @endforeach
     </select>

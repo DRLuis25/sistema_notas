@@ -56,6 +56,8 @@
                 $("#grado_id").append(`<option value=${element.id}> ${element.descripcion} </option>`);
             });
         });
+        $("#seccion_id").empty();
+        $("#seccion_id").append(`<option value=''> Seleccione grado </option>`);
     });
     $("#grado_id").change(event => {
         $.get(`/getSecciones/${event.target.value}`, function(res, sta){

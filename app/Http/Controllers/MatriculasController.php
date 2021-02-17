@@ -141,7 +141,12 @@ class MatriculasController extends AppBaseController
             return redirect(route('matriculas.index'));
         }
         //Guardar cambios;
-        $matriculas = $this->matriculasRepository->update($request->all(), $id);
+        //return $matriculas;
+        $matriculas->seccion_id = $request->seccion_id;
+        $matriculas->observaciones = $request->observaciones;
+        $matriculas->save();
+        //actualizar exonerados
+
 
         Flash::success(__('messages.updated', ['model' => __('models/matriculas.singular')]));
 
