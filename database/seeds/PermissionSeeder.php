@@ -272,7 +272,6 @@ class PermissionSeeder extends Seeder
             'alumno_id'=>'1'
         ]);
 
-
         //Registrar Matrículas (Detalle)
 
         $matricula1Alumno1=Matriculas::create([
@@ -285,22 +284,22 @@ class PermissionSeeder extends Seeder
 
         //Registrar Evaluaciones alumno
 
-        $evaluacionCapacidad1Matricula1Alumno1=Evaluaciones::create([
-            'matricula_id'=>$matricula1Alumno1->matricula_id,
-            'periodo_id'=>$periodo->id,
-            'bimestre_id'=>$primerBimestre->id,
-            'capacidad_id'=>$capacidad1CursoComunicacionPrimerGradoPrimaria->id,
-            'calificacion'=>'20',
-            'observaciones'=>null
-        ]);
+        // $evaluacionCapacidad1Matricula1Alumno1=Evaluaciones::create([
+        //     'matricula_id'=>$matricula1Alumno1->matricula_id,
+        //     'periodo_id'=>$periodo->id,
+        //     'bimestre_id'=>$primerBimestre->id,
+        //     'capacidad_id'=>$capacidad1CursoComunicacionPrimerGradoPrimaria->id,
+        //     'calificacion'=>'20',
+        //     'observaciones'=>null
+        // ]);
 
-        $evaluacionCapacidad2Matricula1Alumno1=Evaluaciones::create([
-            'matricula_id'=>$matricula1Alumno1->matricula_id,
-            'periodo_id'=>$periodo->id,
-            'bimestre_id'=>$primerBimestre->id,
-            'capacidad_id'=>$capacidad2CursoComunicacionPrimerGradoPrimaria->id,
-            'calificacion'=>'15',
-            'observaciones'=>null
-        ]);
+        // $evaluacionCapacidad2Matricula1Alumno1=Evaluaciones::create([
+        //     'matricula_id'=>$matricula1Alumno1->matricula_id,
+        //     'periodo_id'=>$periodo->id,
+        //     'bimestre_id'=>$primerBimestre->id,
+        //     'capacidad_id'=>$capacidad2CursoComunicacionPrimerGradoPrimaria->id,
+        //     'calificacion'=>'15',
+        //     'observaciones'=>null
+        // ]);
     }
 }

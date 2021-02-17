@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCapacidadesRequest;
 use App\Http\Requests\UpdateCapacidadesRequest;
 use App\Repositories\CapacidadesRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Capacidades;
 use App\Models\Niveles;
 use App\Models\Periodos;
 use Illuminate\Http\Request;
@@ -165,5 +166,14 @@ class CapacidadesController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/capacidades.singular')]));
 
         return redirect(route('capacidades.index'));
+    }
+    public function listarCapacidades(request $request,$curso,$grado)
+    {
+        if($request->ajax())
+        {
+            $periodo = Periodos::where('status','=','1')->first();
+            $secciones = Capacidades::where('grado_id','=',$grado)->where('curso_id','=',$curso)->where('periodo_id','=',$periodo->id)->get();
+            return response()->json($secciones);
+        }
     }
 }

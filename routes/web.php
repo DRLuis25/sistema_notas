@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('getCursoGrado/{id}','CursoGradoController@listarCursoGrado');
     Route::get('getSecciones/{id}','CursoGradoController@listarSecciones');
     Route::get('getNroMatricula/{id}','AlumnosController@listarNroMatricula');
-    
+    Route::get('getCapacidad/{curso}/{grado}','CapacidadesController@listarCapacidades');
     Route::resource('secciones', 'SeccionesController');
     
     Route::resource('capacidades', 'CapacidadesController');
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('matriculas', 'MatriculasController');
     
     Route::resource('evaluaciones', 'EvaluacionesController');
-    
+    Route::get('listaralumnos', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.alumnos');
     Route::resource('catedras', 'CatedraController');
 });
 
