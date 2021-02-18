@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'evaluaciones.alumnos','method'=>'get']) !!}
+            {!! Form::open(['route' => 'evaluaciones.indexalumno','method'=>'get']) !!}
 
             <div class="card-body">
 
@@ -28,8 +28,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Continuar', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('evaluaciones.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
+                {!! Form::submit('Listar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('evaluaciones.indexalumno') }}" class="btn btn-default">@lang('crud.cancel')</a>
             </div>
 
             {!! Form::close() !!}

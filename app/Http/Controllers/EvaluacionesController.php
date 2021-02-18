@@ -10,7 +10,12 @@ use App\Models\Niveles;
 use App\Models\Periodos;
 use App\Models\Bimestres;
 use App\Models\Cursos;
+use App\Models\Capacidades;
+use App\Models\Secciones;
+use App\Models\Grados;
+use App\Models\MatriculaMaestro;
 use Illuminate\Http\Request;
+use App\Models\Evaluaciones;
 use Flash;
 use Response;
 
@@ -34,9 +39,9 @@ class EvaluacionesController extends AppBaseController
     public function index(Request $request)
     {
         $evaluaciones = $this->evaluacionesRepository->paginate(10);
-
         return view('evaluaciones.index')
             ->with('evaluaciones', $evaluaciones);
+    
     }
 
     /**
@@ -163,8 +168,16 @@ class EvaluacionesController extends AppBaseController
     }
     public function listarAlumnos(Request $request)
     {
-        return $request;
-        return "Lista alumnos";
-        return view('evaluaciones.listaralumnos');
+       return $request;
+            $seccion = Secciones::first();
+            $periodo = Periodos::where('status','=','1')->first();
+            $niveles = Niveles::where('status','=','1')->first();
+            $bimestre= Bimestres::where('status','=','1')->first();
+            $curso=Cursos::where('status','=','1')->first();
+            $grado=Grados::where('status','=','1')->first();
+            $capacidad=Capacidades::where('status','=','1')->first();
+            $matricula=MatriculaMaestro::where('status','=','1')->first();
+        return view('evaluaciones.indexalumno',compact(['periodo','niveles','bimestre','curso','grado','capacidad','seccion','matricula']));
+        
     }
 }
