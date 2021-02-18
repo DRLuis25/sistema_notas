@@ -47,7 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('matriculas', 'MatriculasController');
     
     Route::resource('evaluaciones', 'EvaluacionesController');
-    Route::get('listaralumnos', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.alumnos');
+    Route::get('indexalumno', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.indexalumno');
     Route::resource('catedras', 'CatedraController');
+    Route::post('registrarnotas','EvaluacionesController@registrarnotas')->name('guardarnotas');
 });
 

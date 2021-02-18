@@ -31,8 +31,6 @@ class Matriculas extends Model
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'matricula_id',
         'periodo_id',
