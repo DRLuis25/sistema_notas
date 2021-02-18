@@ -6,36 +6,35 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Matriculas
+ * Class Exonerados
  * @package App\Models
- * @version February 3, 2021, 6:22 pm UTC
+ * @version February 19, 2021, 4:40 am UTC
  *
  * @property \App\Models\Matricula $matricula
  * @property \App\Models\Periodo $periodo
- * @property \App\Models\Seccion $seccion
+ * @property \App\Models\Curso $curso
  * @property integer $matricula_id
  * @property integer $periodo_id
- * @property integer $seccion_id
- * @property string $observaciones
- * @property string $exonerado
+ * @property integer $curso_id
  */
-class Matriculas extends Model
+class Exonerados extends Model
 {
     use SoftDeletes;
 
-    public $table = 'matricula_detalle';
-    protected $primaryKey = 'matricula_id';
+    public $table = 'exonerado';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
 
+
+
     public $fillable = [
         'matricula_id',
         'periodo_id',
-        'seccion_id',
-        'observaciones',
+        'curso_id'
     ];
 
     /**
@@ -44,10 +43,10 @@ class Matriculas extends Model
      * @var array
      */
     protected $casts = [
+        'id' => 'integer',
         'matricula_id' => 'integer',
         'periodo_id' => 'integer',
-        'seccion_id' => 'integer',
-        'observaciones' => 'string',
+        'curso_id' => 'integer'
     ];
 
     /**
@@ -58,8 +57,7 @@ class Matriculas extends Model
     public static $rules = [
         'matricula_id' => 'required',
         'periodo_id' => 'required',
-        'seccion_id' => 'required',
-        'observaciones' => 'nullable|string|max:255',
+        'curso_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -68,9 +66,9 @@ class Matriculas extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function matriculamaestro()
+    public function matricula()
     {
-        return $this->belongsTo(MatriculaMaestro::class, 'matricula_id');
+        return $this->belongsTo(\App\Models\Matricula::class, 'matricula_id');
     }
 
     /**
@@ -78,14 +76,14 @@ class Matriculas extends Model
      **/
     public function periodo()
     {
-        return $this->belongsTo(Periodos::class, 'periodo_id');
+        return $this->belongsTo(\App\Models\Periodo::class, 'periodo_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function seccion()
+    public function curso()
     {
-        return $this->belongsTo(Secciones::class, 'seccion_id');
+        return $this->belongsTo(\App\Models\Curso::class, 'curso_id');
     }
 }

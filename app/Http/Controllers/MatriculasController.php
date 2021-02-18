@@ -8,12 +8,14 @@ use App\Repositories\MatriculasRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Alumnos;
 use App\Models\CursoGrado;
+use App\Models\Exonerados;
 use App\Models\Matriculas;
 use App\Models\Niveles;
 use App\Models\Periodos;
 use App\Models\Secciones;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
@@ -71,14 +73,37 @@ class MatriculasController extends AppBaseController
      */
     public function store(CreateMatriculasRequest $request)
     {
-        return $request;
-        $input = $request->all();
+        try {
+            //return $request;
+            //Store matricula Detalle
+            DB::beginTransaction();
+            $input = $request->all();
+            $matriculas = $this->matriculasRepository->create($input);
+            //Store Exonerados
+            return $matriculas;
+            if(count($input['exonerado'])){
+                $exonerados = $input['exonerado'];
+                $cont = 0;
+                while ($cont<count($exonerados)) {
+                    $detalle = new Exonerados();
+                    $detalle->matricula_id = $matriculas->matricula_id;
+                    $detalle->periodo_id = $matriculas->periodo_id;
+                    $detalle->curso_id = $exonerados[$cont];
+                    $detalle->save();
+                    return $detalle;
+                    $cont=$cont+1;
+                }
+            }
+            DB::commit();
+            Flash::success(__('messages.saved', ['model' => __('models/matriculas.singular')]));
 
-        $matriculas = $this->matriculasRepository->create($input);
+            return redirect(route('matriculas.index'));
+        } catch (\Throwable $th) {
+            Flash::error(__('messages.rel_exist'));
 
-        Flash::success(__('messages.saved', ['model' => __('models/matriculas.singular')]));
-
-        return redirect(route('matriculas.index'));
+            return redirect(route('matriculas.index'));
+            dd($th);
+        }
     }
 
     /**

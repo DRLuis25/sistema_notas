@@ -71,6 +71,11 @@ class Alumnos extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
-
-    
+    /**
+     * Get the phone associated with the user.
+     */
+    public function matriculamaestro()
+    {
+        return $this->hasOne(MatriculaMaestro::class,'alumno_id');
+    }
 }
