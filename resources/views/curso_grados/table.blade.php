@@ -1,5 +1,4 @@
 <div class="table-responsive">
-    <p>Periodo {{$cursoGrados[0]->periodo->nombre}}</p>
     <h5>Periodo &nbsp; {{ $cursoGrados[0]->periodo->nombre }} </h5>
     <!-- Despegable -->
     <nav>
