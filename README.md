@@ -39,3 +39,7 @@ Comandos:
     php artisan key:generate
     php artisan migrate:fresh --seed
     php artisan serve
+
+En caso de error ejecutar:
+
+    php artisan config:cache
