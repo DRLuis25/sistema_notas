@@ -32,10 +32,10 @@ Instalación
 
 Comandos:
 
-git clone https://github.com/DRLuis25/sistema_notas
-cd sistema_notas
-composer install
-renombrar .env.example a .env y configurar la base de datos
-php artisan key:generate
-php artisan migrate:fresh --seed
-php artisan serve
+    git clone https://github.com/DRLuis25/sistema_notas
+    cd sistema_notas
+    composer install
+    renombrar .env.example a .env y configurar la base de datos
+    php artisan key:generate
+    php artisan migrate:fresh --seed
+    php artisan serve
