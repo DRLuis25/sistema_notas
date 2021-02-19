@@ -30,7 +30,7 @@
             <th></th>   
             <th>Año academico:</th>
             <th></th>
-            <th>2015</th>
+            <th>{{$periodo->nombre}}</th>
         </tr>
         </thead>
     </table>
@@ -64,14 +64,14 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Primer Grado de Primaria</td>
+                <td>{{$grado->descripcion}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>A</td>
+                <td>{{$seccion->letra}}</td>
                 <td></td>
                 <td></td>
-                <td>Educacion Fisica</td>
+                <td>{{$curso->nombre}}</td>
             </tr>
         </tbody>
     </table>
@@ -95,172 +95,77 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>S136</td>
+                <td>DC{{sprintf('%06d',$docente->id)}}</td>
                 <td></td>
                 <td></td>
-                <td>JUAN SANTOS</td>
+                <td>{{$docente->apellidoPaterno}} {{$docente->apellidoMaterno}}, {{$docente->name}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>12/02/2016</td>
+                <td>{{date('m/d/Y')}}</td>
             </tr>
         </tbody>
     </table>
     <table>
         <thead>
         <tr>
+            
             <th></th>
             <th></th>
-            <th><b>No</b></th>
-            <th><b>Apellidos y Nombres</b></th>
+            <th><b>@lang('models/matriculas.fields.matricula_id')</b></th>
+            <th><b>@lang('models/alumnos.fields.apellidosyNombres')</b></th>
             <th></th>
             <th></th>
             <th></th>
             <th></th>
-            <th><b>Co</b></th>
-            <th><b>Do</b></th>
-            <th><b>Co</b></th>
-            <th><b>Ac</b></th>
+            @foreach ($capacidades as $item)
+                <th><b>{{$item->abreviatura}}</b></th>
+            @endforeach
             <th><b>PR</b></th>
         </tr>
         </thead>
         <tbody>
-            <tr>
+            @foreach($res[0] as $key => $evaluacion)
+                <tr>
+                </tr>
+                <tr>
                 <td></td>
                 <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
+                <td>{{ $evaluacion->matricula->nromatricula }}</td>
+                <td>{{ $evaluacion->matricula->alumno->apellidoPaterno }} {{ $evaluacion->matricula->alumno->apellidoMaterno }}, {{ $evaluacion->matricula->alumno->nombres }}</td>
+                    
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
+                <td>{{$res[0][$key]->calificacion}}</td>
+                @isset($res[1][$key]->calificacion)
+                <td>{{ $res[1][$key]->calificacion}}
+                </td>
+                @endisset
+                
+                @isset($res[2][$key]->calificacion)
+                <td>{{ $res[2][$key]->calificacion}}
+                </td> 
+                @endisset
+                @isset($res[3][$key]->calificacion)
+                <td>{{ $res[3][$key]->calificacion}}
+                </td>
+                @endisset
+                <td>
+                    @if (count($capacidades)==1)
+                        {{$res[0][$key]->calificacion}}
+                    @elseif(count($capacidades)==2)
+                        {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion)/2)}}
+                    @elseif(count($capacidades)==3)
+                        {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion + $res[2][$key]->calificacion)/3)}}
+                    @else
+                        {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion + $res[2][$key]->calificacion + $res[3][$key]->calificacion)/4)}}
+                    @endif
+                </td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>Lujan Carranza Michael Alexander</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-                <td>20</td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

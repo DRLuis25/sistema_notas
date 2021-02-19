@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Niveles;
+use App\Models\Periodos;
 use Illuminate\Http\Request;
 
 class ReportesController extends Controller
@@ -13,7 +15,8 @@ class ReportesController extends Controller
      */
     public function index()
     {
-        //
-        return view('reportes.index');
+        $periodos = Periodos::all();
+        $niveles = Niveles::all();
+        return view('reportes.index',compact('periodos','niveles'));
     }
 }

@@ -44,10 +44,12 @@
     {!! Form::label('estadoCivil', __('models/docentes.fields.estadoCivil').':') !!}
     <select name="estadoCivil" id="estadoCivil" required class="form-control">
         <option value="">Seleccione una opción</option>
-        <option value="Soltero"@if ("Soltero"==$docentes->estadoCivil){{'selected'}}             
-            @endif>Soltero</option>
-        <option value="Casado"@if ("Casado"==$docentes->estadoCivil){{'selected'}}             
-            @endif>Casado</option>
+        <option value="Soltero"@isset($docentes)
+        @if ("Soltero"==$docentes->estadoCivil){{'selected'}}             
+        @endif
+        @endisset >Soltero</option>
+        <option value="Casado"@isset($docentes)@if ("Casado"==$docentes->estadoCivil){{'selected'}}             
+            @endif @endisset>Casado</option>
     </select>
 </div>
 
@@ -69,8 +71,8 @@
     <select class="form-control" name='departamento_id' value="" required>
         <option value="">Seleccione departamento</option>
         @foreach ($departamentos as $departamento)
-        <option value="{{$departamento->id}}"@if ($departamento->id==$docentes->departamento_id){{'selected'}}             
-            @endif>{{$departamento->nombre}}</option>
+        <option value="{{$departamento->id}}"@isset($docentes)@if ($departamento->id==$docentes->departamento_id){{'selected'}}             
+            @endif @endisset>{{$departamento->nombre}}</option>
         @endforeach
     </select>
 </div>

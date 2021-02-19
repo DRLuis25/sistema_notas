@@ -6,6 +6,7 @@ use App\Http\Requests\CreateDocentesRequest;
 use App\Http\Requests\UpdateDocentesRequest;
 use App\Repositories\DocentesRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Catedra;
 use App\Repositories\DepartamentosRepository;
 use Illuminate\Http\Request;
 use App\User;
@@ -165,5 +166,13 @@ class DocentesController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/docentes.singular')]));
 
         return redirect(route('docentes.index'));
+    }
+    public function getDocente(request $request,$periodo_id,$curso_id,$grado_id,$seccion_id)
+    {
+        if($request->ajax())
+        {
+            $secciones = Catedra::where('periodo_id','=',$periodo_id)->where('curso_id','=',$curso_id)->where('grado_id','=',$grado_id)->where('seccion_id','=',$seccion_id)->join('users','users.id','=','catedra_docente.docente_id')->first();
+            return response()->json($secciones);
+        }
     }
 }

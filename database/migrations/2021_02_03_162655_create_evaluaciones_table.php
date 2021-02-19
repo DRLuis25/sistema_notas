@@ -64,6 +64,7 @@ class CreateEvaluacionesTable extends Migration
             $table->bigInteger('matricula_id',false,true);
             $table->bigInteger('periodo_id',false,true);
             $table->bigInteger('bimestre_id',false,true);
+            //$table->bigInteger('')
             $table->bigInteger('capacidad_id',false,true);
             $table->integer('calificacion');
             $table->string('observaciones')->nullable();

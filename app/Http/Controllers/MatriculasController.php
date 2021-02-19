@@ -84,7 +84,7 @@ class MatriculasController extends AppBaseController
             $matriculas->observaciones = $request->observaciones;
             $matriculas->save();
             //return $matriculas;
-            if(count($input['exonerado'])){
+            if(count($input['exonerado'])>0){
                 $exonerados = $input['exonerado'];
                 $cont = 0;
                 while ($cont<count($exonerados)) {

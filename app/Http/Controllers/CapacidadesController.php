@@ -107,7 +107,7 @@ class CapacidadesController extends AppBaseController
     public function edit($id)
     {
         $capacidades = $this->capacidadesRepository->find($id);
-
+        //return $capacidades;
         if (empty($capacidades)) {
             Flash::error(__('messages.not_found', ['model' => __('models/capacidades.singular')]));
 

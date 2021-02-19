@@ -103,8 +103,8 @@ class Capacidades extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function evaluacions()
+    public function evaluaciones()
     {
-        return $this->hasMany(\App\Models\Evaluacion::class, 'capacidad_id');
+        return $this->hasMany(Evaluaciones::class, 'capacidad_id');
     }
 }
