@@ -2,7 +2,7 @@
 <div class="form-group col-sm-1">
     {!! Form::label('periodo_id', __('models/matriculas.fields.periodo_id').':') !!}
     {!! Form::label('periodo_id', $periodo->nombre, ['class' => 'form-control']) !!}
-    {!! Form::hidden('periodo_id', $periodo->nombre, ['class' => 'form-control']) !!}
+    {!! Form::hidden('periodo_id', $periodo->id, ['class' => 'form-control']) !!}
 </div>
 <!-- Alumno Id Field -->
 <div class="form-group col-sm-3">

@@ -3,7 +3,6 @@
         <thead>
             <tr>
                 <th>@lang('models/evaluaciones.fields.periodo_id')</th>
-                <th>@lang('models/evaluaciones.fields.matricula_id')</th>
                 <th>@lang('models/evaluaciones.fields.bimestre_id')</th>
                 <th>@lang('models/evaluaciones.fields.capacidad_id')</th>
                 <th>@lang('models/evaluaciones.fields.calificacion')</th>
@@ -15,7 +14,6 @@
         @foreach($evaluaciones as $evaluaciones)
             <tr>
                 <td>{{ $evaluaciones->periodo->nombre }}</td>
-                <td>{{ $evaluaciones->matricula->nromatricula }}</td>
                 <td>{{ $evaluaciones->bimestre->nombre }}</td>
                 <td>{{ $evaluaciones->capacidad }}</td>
                 <td>{{ $evaluaciones->calificacion }}</td>

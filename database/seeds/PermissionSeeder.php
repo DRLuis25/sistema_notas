@@ -152,9 +152,6 @@ class PermissionSeeder extends Seeder
         foreach($docentes as $docente){
             $docente->assignRole('user');
          }
-        //Alumnos
-        factory(Alumnos::class,20)->create();
-        
         //Grados
         //Primaria
         $primerGradoPrimaria = Grados::create([
@@ -264,24 +261,23 @@ class PermissionSeeder extends Seeder
             'abreviatura'=>'Adec. org. y des. ideas',
             'orden'=>'2'
         ]);
-
-        //Matrícula única inicial
-
-        $matriculaInicialAlumno1=MatriculaMaestro::create([
-            'nromatricula'=>'1234567821',
-            'alumno_id'=>'1'
-        ]);
-
+        //Alumnos
+        $alumnos = factory(Alumnos::class,20)->create()->each(function ($alumno){
+            //Matrícula única inicial
+            $matriculaInicialAlumno = MatriculaMaestro::create([
+                'nromatricula'=> $alumno->dni.substr(date("Y"),-2),
+                'alumno_id'=>$alumno->id,
+            ]);
+        });
         //Registrar Matrículas (Detalle)
 
         $matricula1Alumno1=Matriculas::create([
-            'matricula_id'=>$matriculaInicialAlumno1->id,
+            'matricula_id'=>$alumnos[0]->matriculamaestro->id, //Alumno[0] es el primer alumno
             'periodo_id'=>$periodo->id,
             'seccion_id'=>$primeroPrimariaSeccionA->id,
             'observaciones'=>null,
-            'exonerado'=>'0'
         ]);
-
+        
         //Registrar Evaluaciones alumno
 
         // $evaluacionCapacidad1Matricula1Alumno1=Evaluaciones::create([

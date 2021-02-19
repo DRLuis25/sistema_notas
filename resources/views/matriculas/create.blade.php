@@ -47,7 +47,7 @@
         $.get(`/getNroMatricula/${event.target.value}`, function(res, sta){
             console.log(res);
             $("#matricula_id2").val(res.nromatricula);
-            $("#matricula_id").val(res.nromatricula);
+            $("#matricula_id").val(res.id);
         });
     });
     $("#nivel_id").change(event => {

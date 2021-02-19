@@ -33,14 +33,13 @@ class CreateEvaluacionesTable extends Migration
         
         //Matricula Detalle
         Schema::create('matricula_detalle', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('matricula_id',false,true);
             $table->bigInteger('periodo_id',false,true);
             $table->bigInteger('seccion_id',false,true);
             $table->string('observaciones')->nullable();
-            $table->string('exonerado',1)->default('0');
             $table->timestamps();
             $table->softDeletes();
-            //$table->primary(array('matricula_id'));
             $table->unique(['matricula_id','periodo_id']);
             $table->foreign('matricula_id', 'matricula_detalle_has_alumno_ibfk_1')->references('id')->on('matricula');
             $table->foreign('periodo_id', 'matricula_detalle_has_periodo_ibfk_1')->references('id')->on('periodo');

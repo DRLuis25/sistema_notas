@@ -13,6 +13,8 @@ use App\Models\Capacidades;
 use App\Models\Cursos;
 use App\Models\Evaluaciones;
 use App\Models\Grados;
+
+use App\Models\MatriculaMaestro;
 use App\Models\Matriculas;
 use App\Models\Secciones;
 use Illuminate\Http\Request;
@@ -178,7 +180,6 @@ class EvaluacionesController extends AppBaseController
         $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
         $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
         $matriculas = Matriculas::where('periodo_id','=',$periodo->id)->where('seccion_id','=',$seccion->id)->get();
-
         return view('evaluaciones.indexalumno',compact(['periodo','niveles','grado','seccion','curso','bimestre','capacidad','matriculas']));
     }
     public function registrarnotas(Request $request)
@@ -212,7 +213,7 @@ class EvaluacionesController extends AppBaseController
 
         }catch (Exception $e) {
             DB::rollback();
-           }     
+        }     
        
     }
 }

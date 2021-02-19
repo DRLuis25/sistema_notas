@@ -20,7 +20,7 @@
                 <td>{{ $matriculas->seccion->letra }}</td>
                 <td>{{ $matriculas->observaciones }}</td>
                 <td>
-                    {{ $matriculas->exonerados }}
+                    {{ $matriculas->exonerar }}
                 </td>
                 <td width="120">
                     <!--arreglar el id para las acciones-->
