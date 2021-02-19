@@ -21,7 +21,6 @@
                     @if($curso->nivel->descripcion == "Primaria") 
                         <tr>
                             <td>{{ $curso->nombre }}</td>
-                        <td>{{ $curso->nivel->descripcion }}</td>
                             <td width="120">
                                 {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
                                 <div class='btn-group'>
@@ -55,7 +54,6 @@
                     @if($curso->nivel->descripcion != "Primaria") 
                         <tr>
                             <td>{{ $curso->nombre }}</td>
-                        <td>{{ $curso->nivel->descripcion }}</td>
                             <td width="120">
                                 {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
                                 <div class='btn-group'>
