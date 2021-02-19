@@ -31,7 +31,7 @@ class SeccionesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $secciones = $this->seccionesRepository->paginate(10);
+        $secciones = $this->seccionesRepository->all();
 
         return view('secciones.index')
             ->with('secciones', $secciones);

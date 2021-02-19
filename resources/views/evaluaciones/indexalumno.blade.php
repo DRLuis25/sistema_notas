@@ -15,7 +15,7 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-    <form action="{{route('guardarnotas')}}" method="POST" >
+    <form action="{{route('guardarnotas')}}" method="POST" onsubmit="return validar()" >
         @csrf
         <div class="card">
 

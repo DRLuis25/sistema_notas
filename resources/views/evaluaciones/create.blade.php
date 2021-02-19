@@ -79,7 +79,7 @@
             $("#capacidad_id").empty();
             $("#capacidad_id").append(`<option value=''>Seleccione Capacidad</option>`);
             res.forEach(element => {
-                $("#capacidad_id").append(`<option value=${element.id}> ${element.abreviatura} </option>`);
+                $("#capacidad_id").append(`<option value=${element.id}> ${element.asignatura} </option>`);
             });
         });
     });
@@ -95,7 +95,5 @@
         });
     });
 </script>
-
-
 
 @endsection

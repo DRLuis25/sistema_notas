@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'Registrar Evaluación',
-  'plural' => 'Registrar Evaluaciones',
+  'singular' => 'Evaluación',
+  'plural' => 'Evaluaciones',
   'fields' => 
   array (
     'id' => 'Id',

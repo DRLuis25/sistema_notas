@@ -15,7 +15,7 @@
                     <input type="hidden" name="evaluacion_id[]" value="{{$evaluacion->id}}">
                     <input type="hidden" name="matricula_id[]" value="{{$evaluacion->matricula->id}}">
                     <td>{{ $evaluacion->matricula->alumno->apellidoPaterno }} {{ $evaluacion->matricula->alumno->apellidoMaterno }}, {{ $evaluacion->matricula->alumno->nombres }}</td>
-                    <td><input type="text" class="form-control col-2" name="nota_id[]" maxlength="2" min="0" max="20" value="{{$evaluacion->calificacion}}"></td>
+                    <td style="width: 600px"><input id="nota" type="number" class="form-control col-2" name="nota_id[]" maxlength="2" min="0" max="20" value="{{$evaluacion->calificacion}}" required></td>
                 </tr>
             @endforeach
             </tbody>

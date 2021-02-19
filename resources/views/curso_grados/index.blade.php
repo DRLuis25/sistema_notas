@@ -27,11 +27,7 @@
             <div class="card-body p-0">
                 @include('curso_grados.table')
 
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-                        @include('adminlte-templates::common.paginate', ['records' => $cursoGrados])
-                    </div>
-                </div>
+                
             </div>
 
         </div>

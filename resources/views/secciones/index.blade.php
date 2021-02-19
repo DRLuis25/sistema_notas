@@ -27,11 +27,6 @@
             <div class="card-body p-0">
                 @include('secciones.table')
 
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-                        @include('adminlte-templates::common.paginate', ['records' => $secciones])
-                    </div>
-                </div>
             </div>
 
         </div>
