@@ -8,18 +8,22 @@
                     <th colspan="3">Nota</th>
                 </tr>
             </thead>
-
+            <tbody>
+                @foreach($matriculas as $matricula)
+                <tr>
+                    <td>{{ $matricula->matriculamaestro->nromatricula }}</td>
+                    <input type="hidden" name="matricula_id[]" value="{{$matricula->matricula_id}}">
+                    <td>{{ $matricula->matriculamaestro->alumno->apellidoPaterno }} {{ $matricula->matriculamaestro->alumno->apellidoMaterno }}, {{ $matricula->matriculamaestro->alumno->nombres }}</td>
+                    <td><input type="text" class="form-control col-2" name="nota_id[]" maxlength="2" min="0" max="20"></td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
     </div>
     <div class="card-footer clearfix float-right">
         <div class="float-right">
-            @foreach($matricula as $matriculas)
-            <tr>
-                <td>{{ $matriculas->matriculamaestro->nromatricula }}</td>
-                <td>{{ $matriculas->matriculamaestro->alumno->apellidoPaterno }} {{ $matriculas->matriculamaestro->alumno->apellidoMaterno }}, {{ $matriculas->matriculamaestro->alumno->nombres }}</td>
-               
-            </tr>
-        @endforeach
+            
         </div>
+        <button class="btn btn-primary">Enviar</button>
     </div>
 </div>

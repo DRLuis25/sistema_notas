@@ -178,19 +178,11 @@ class EvaluacionesController extends AppBaseController
         $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
         $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
         $matriculas = Matriculas::where('periodo_id','=',$periodo->id)->where('seccion_id','=',$seccion->id)->get();
+
         return view('evaluaciones.indexalumno',compact(['periodo','niveles','grado','seccion','curso','bimestre','capacidad','matriculas']));
     }
     public function registrarnotas(Request $request)
     {
-        //return $request;
-        //Obtener notas de los alumnos
-
-        //Registrar notas
-         //foreach ($alumnos as $item) {
-        //     Evaluaciones::create([
-        //          'matricula_id'=>$item->matricula_id
-        //      ]);
-        //  }
         try{
 
             DB::beginTransaction(); 
