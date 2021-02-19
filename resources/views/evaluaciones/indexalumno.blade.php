@@ -15,17 +15,14 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-
+    <form action="{{route('guardarnotas')}}" method="POST" >
+        @csrf
         <div class="card">
 
-            {!! Form::open(['route' => 'evaluaciones.indexalumno','method'=>'get']) !!}
-
             <div class="card-body">
-
                 <div class="row">
                     @include('evaluaciones.fieldsregistrar')
                 </div>
-
             </div>
 
         </div>
@@ -39,8 +36,7 @@
 
         <div class="card">
             @include('evaluaciones.tablealumno')
-
         </div>
     </div>
+    </form>
 @endsection
-

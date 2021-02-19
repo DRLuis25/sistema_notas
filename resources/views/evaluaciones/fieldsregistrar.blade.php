@@ -1,7 +1,8 @@
 <!-- Periodo Id Field -->
 <div class="form-group col-sm-2">
     {!! Form::label('periodo_id', __('models/evaluaciones.fields.periodo_id').':') !!}
-    <input class="form-control" type="text" value="{{$periodo->nombre}}" readonly> 
+    <input class="form-control" type="text" value="{{$periodo->nombre}}" readonly>
+    <input type="hidden" value="{{$periodo->id}}" name="perido_id">
 </div>
 
 <!-- Nivel Id Field -->
@@ -28,10 +29,12 @@
 <div class="form-group col-sm-6">
     {!! Form::label('bimestre_id', __('models/evaluaciones.fields.bimestre_id').':') !!}
     <input class="form-control" type="text" value="{{$bimestre->nombre}}" readonly>
+    <input type="hidden" value="{{$bimestre->id}}" name="bimestre_id">
 </div>
 
 <!-- Capacidad Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('capacidad_id', __('models/evaluaciones.fields.capacidad_id').':') !!}
     <input class="form-control" type="text" value="{{$capacidad->abreviatura}}" readonly>
+    <input type="hidden" value="{{$capacidad->id}}" name="capacidad_id">
 </div
