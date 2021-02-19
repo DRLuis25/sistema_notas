@@ -68,7 +68,7 @@ class Exonerados extends Model
      **/
     public function matricula()
     {
-        return $this->belongsTo(\App\Models\Matricula::class, 'matricula_id');
+        return $this->belongsTo(Matriculas::class, 'matricula_id');
     }
 
     /**
@@ -76,7 +76,7 @@ class Exonerados extends Model
      **/
     public function periodo()
     {
-        return $this->belongsTo(\App\Models\Periodo::class, 'periodo_id');
+        return $this->belongsTo(Periodos::class, 'periodo_id');
     }
 
     /**
@@ -84,6 +84,6 @@ class Exonerados extends Model
      **/
     public function curso()
     {
-        return $this->belongsTo(\App\Models\Curso::class, 'curso_id');
+        return $this->belongsTo(Cursos::class, 'curso_id');
     }
 }

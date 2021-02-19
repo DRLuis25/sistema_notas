@@ -33,6 +33,7 @@ class CreateEvaluacionesTable extends Migration
         
         //Matricula Detalle
         Schema::create('matricula_detalle', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('matricula_id',false,true);
             $table->bigInteger('periodo_id',false,true);
             $table->bigInteger('seccion_id',false,true);

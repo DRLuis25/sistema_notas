@@ -24,7 +24,6 @@ class Matriculas extends Model
     use SoftDeletes;
 
     public $table = 'matricula_detalle';
-    protected $primaryKey = 'matricula_id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -87,5 +86,12 @@ class Matriculas extends Model
     public function seccion()
     {
         return $this->belongsTo(Secciones::class, 'seccion_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function exonerar()
+    {
+        return $this->hasMany(Exonerados::class, 'matricula_id');
     }
 }

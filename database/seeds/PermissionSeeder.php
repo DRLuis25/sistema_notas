@@ -277,7 +277,7 @@ class PermissionSeeder extends Seeder
             'seccion_id'=>$primeroPrimariaSeccionA->id,
             'observaciones'=>null,
         ]);
-
+        
         //Registrar Evaluaciones alumno
 
         // $evaluacionCapacidad1Matricula1Alumno1=Evaluaciones::create([
