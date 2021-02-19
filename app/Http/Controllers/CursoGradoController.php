@@ -37,7 +37,7 @@ class CursoGradoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cursoGrados = $this->cursoGradoRepository->paginate(10);
+        $cursoGrados = $this->cursoGradoRepository->all();
 
         return view('curso_grados.index')
             ->with('cursoGrados', $cursoGrados);
