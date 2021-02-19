@@ -41,7 +41,7 @@ class EvaluacionesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $evaluaciones = Evaluaciones::select('periodo_id','bimestre_id','capacidad_id')->distinct()->paginate(6);
+        $evaluaciones = Evaluaciones::select('periodo_id','bimestre_id','capacidad_id')->distinct()->get();
         //$evaluaciones = $this->evaluacionesRepository->paginate(10);
         return view('evaluaciones.index')
             ->with('evaluaciones', $evaluaciones);

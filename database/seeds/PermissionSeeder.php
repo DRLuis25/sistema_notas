@@ -15,6 +15,7 @@ use App\Models\Matriculas;
 use App\Models\Niveles;
 use App\Models\Periodos;
 use App\Models\Secciones;
+use App\Repositories\MatriculasRepository;
 use App\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -29,6 +30,8 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+        $permission = Permission::create(['name' => 'evaluaciones']);
+        $permission = Permission::create(['name' => 'reportes']);
         //Departamentos
         $primaria=Departamentos::create([
             'nombre'=>'Personal Docente Primaria',
@@ -428,51 +431,51 @@ $terceroPrimariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$primerGradoPrimaria->id        //terceroGradoPrimaria
+    'grado_id'=>$terceroGradoPrimaria->id        //terceroGradoPrimaria
 ]);
 $terceroPrimariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$primerGradoPrimaria->id        //terceroGradoPrimaria
+    'grado_id'=>$terceroGradoPrimaria->id        //terceroGradoPrimaria
 ]);
 
 $cuartoPrimariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$segundoGradoPrimaria->id        //cuartoGradoPrimaria
+    'grado_id'=>$cuartoGradoPrimaria->id        //cuartoGradoPrimaria
 ]);
 $cuartoPrimariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$segundoGradoPrimaria->id        //cuartoGradoPrimaria
+    'grado_id'=>$cuartoGradoPrimaria->id        //cuartoGradoPrimaria
 ]);
 
 $quintoPrimariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$segundoGradoPrimaria->id        //quintoGradoPrimaria
+    'grado_id'=>$quintoGradoPrimaria->id        //quintoGradoPrimaria
 ]);
 $quintoPrimariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$segundoGradoPrimaria->id        //quintoGradoPrimaria
+    'grado_id'=>$quintoGradoPrimaria->id        //quintoGradoPrimaria
 ]);
 $sextoPrimariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$segundoGradoPrimaria->id        //sextoGradoPrimaria
+    'grado_id'=>$sextoGradoPrimaria->id        //sextoGradoPrimaria
 ]);
 $sextoPrimariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$segundoGradoPrimaria->id        //sextoGradoPrimaria
+    'grado_id'=>$sextoGradoPrimaria->id        //sextoGradoPrimaria
 ]);
 
 $primeroSecundariaSeccionA=Secciones::create([
@@ -505,39 +508,39 @@ $terceroSecundariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$primerGradoSecundaria->id        //terceroGradoSecundaria
+    'grado_id'=>$terceroGradoSecundaria->id        //terceroGradoSecundaria
 ]);
 $terceroSecundariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$primerGradoSecundaria->id        //terceroGradoSecundaria
+    'grado_id'=>$terceroGradoSecundaria->id        //terceroGradoSecundaria
 ]);
 
 $cuartoSecundariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$segundoGradoSecundaria->id        //cuartoGradoSecundaria
+    'grado_id'=>$cuartoGradoSecundaria->id        //cuartoGradoSecundaria
 ]);
 $cuartoSecundariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$segundoGradoSecundaria->id        //cuartoGradoSecundaria
+    'grado_id'=>$cuartoGradoSecundaria->id        //cuartoGradoSecundaria
 ]);
 
 $quintoSecundariaSeccionA=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'A',
     'nrovacantes'=>'30',
-    'grado_id'=>$segundoGradoPrimaria->id        //quintoGradoSecundaria
+    'grado_id'=>$quintoGradoSecundaria->id        //quintoGradoSecundaria
 ]);
 $quintoSecundariaSeccionB=Secciones::create([
     'periodo_id'=>$periodo->id,
     'letra'=>'B',
     'nrovacantes'=>'20',
-    'grado_id'=>$segundoGradoSecundaria->id        //quintoGradoSecundaria
+    'grado_id'=>$quintoGradoSecundaria->id        //quintoGradoSecundaria
 ]);
 
         //Registrar Cátedras de docentes
@@ -580,7 +583,7 @@ $capacidad1CursoComunicacionPrimerGradoPrimaria=Capacidades::create([
     'grado_id'=>$cursoComunicacionPrimerGradoPrimaria->grado_id,        //primerGradoPrimaria
     'asignatura'=>'Infiere e interpreta información del texto oral',
     'abreviatura'=>'Inf. e Interp. texto oral',
-    'orden'=>'1'
+    'orden'=>'3'
 ]);
 
 $capacidad2CursoComunicacionPrimerGradoPrimaria=Capacidades::create([
@@ -589,7 +592,7 @@ $capacidad2CursoComunicacionPrimerGradoPrimaria=Capacidades::create([
     'grado_id'=>$cursoComunicacionPrimerGradoPrimaria->grado_id,        //primerGradoPrimaria
     'asignatura'=>'Adecúa, organiza y desarrolla las ideas de forma coherente y cohesionada',
     'abreviatura'=>'Adec. org. y des. ideas',
-    'orden'=>'2'
+    'orden'=>'4'
 ]);
 $capacidad1CursoArteyCulturaPrimerGradoPrimaria=Capacidades::create([
     'periodo_id'=>$periodo->id,
@@ -999,14 +1002,20 @@ $capacidad2CursoEducaciónFisicaTercerGradoPrimaria=Capacidades::create([
                 'nromatricula'=> $alumno->dni.substr(date("Y"),-2),
                 'alumno_id'=>$alumno->id,
             ]);
+            $matricular = Matriculas::create([
+                'matricula_id'=>$alumno->matriculamaestro->id, //Alumno[0] es el primer alumno
+                'periodo_id'=>'1',
+                'seccion_id'=>'1',
+                'observaciones'=>null,
+            ]);
         });
         //Registrar Matrículas (Detalle)
-
+/*
         $matricula1Alumno1=Matriculas::create([
             'matricula_id'=>$alumnos[0]->matriculamaestro->id, //Alumno[0] es el primer alumno
             'periodo_id'=>$periodo->id,
             'seccion_id'=>$primeroPrimariaSeccionA->id,
             'observaciones'=>null,
-        ]);
+        ]);*/
     }
 }

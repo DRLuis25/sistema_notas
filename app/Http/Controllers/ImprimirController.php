@@ -26,7 +26,7 @@ class ImprimirController extends Controller
     {
         
         $capacidades = Capacidades::where('periodo_id','=','1')->where('grado_id','=','1')->where('curso_id','=','1')->get();
-        return $capacidades;
+        //return $capacidades;
         foreach ($capacidades as $capacidad) {
             $res[]=$evaluaciones = Evaluaciones::where('periodo_id','=','1')->where('bimestre_id','=','1')->where('capacidad_id','=',$capacidad->id)->get();
         }

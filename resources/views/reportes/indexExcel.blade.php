@@ -160,8 +160,9 @@
                         {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion)/2)}}
                     @elseif(count($capacidades)==3)
                         {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion + $res[2][$key]->calificacion)/3)}}
-                    @else
+                    @elseif(isset($res[0][$key]->calificacion) && isset($res[1][$key]->calificacion)&& isset($res[2][$key]->calificacion)&& isset($res[3][$key]->calificacion))
                         {{round (($res[0][$key]->calificacion + $res[1][$key]->calificacion + $res[2][$key]->calificacion + $res[3][$key]->calificacion)/4)}}
+                        
                     @endif
                 </td>
             </tr>

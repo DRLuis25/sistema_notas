@@ -1,4 +1,4 @@
-
+@role('admin')
 <li class="nav-item">
     <a href="{{ route('departamentos.index') }}"
        class="nav-link {{ Request::is('departamentos*') ? 'active' : '' }}">
@@ -73,22 +73,24 @@
 </li>
 
 <li class="nav-item">
+    <a href="{{ route('catedras.index') }}"
+       class="nav-link {{ Request::is('catedras*') ? 'active' : '' }}">
+        <p>@lang('models/catedras.plural')</p>
+    </a>
+</li>
+@endrole
+@hasanyrole('admin|user')
+<li class="nav-item">
     <a href="{{ route('evaluaciones.index') }}"
        class="nav-link {{ Request::is('evaluaciones*') ? 'active' : '' }}">
         <p>@lang('models/evaluaciones.plural')</p>
     </a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('catedras.index') }}"
-       class="nav-link {{ Request::is('catedras*') ? 'active' : '' }}">
-        <p>@lang('models/catedras.plural')</p>
-    </a>
-</li>
 <li class="nav-item">
     <a href="{{ route('reportes.index') }}"
        class="nav-link {{ Request::is('reportes*') ? 'active' : '' }}">
         <p>Reportes</p>
     </a>
 </li>
+@endhasanyrole

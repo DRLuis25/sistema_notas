@@ -84,28 +84,33 @@ class MatriculasController extends AppBaseController
             $matriculas->observaciones = $request->observaciones;
             $matriculas->save();
             //return $matriculas;
-            if(count($input['exonerado'])>0){
-                $exonerados = $input['exonerado'];
-                $cont = 0;
-                while ($cont<count($exonerados)) {
-                    $detalle = new Exonerados();
-                    $detalle->matricula_id = $matriculas->matricula_id;
-                    $detalle->periodo_id = $matriculas->periodo_id;
-                    $detalle->curso_id = $exonerados[$cont];
-                    $detalle->save();
-                    $cont=$cont+1;
+            if(isset($input['exonerado'])){
+
+                if(count($input['exonerado'])>0){
+                    $exonerados = $input['exonerado'];
+                    $cont = 0;
+                    while ($cont<count($exonerados)) {
+                        $detalle = new Exonerados();
+                        $detalle->matricula_id = $matriculas->matricula_id;
+                        $detalle->periodo_id = $matriculas->periodo_id;
+                        $detalle->curso_id = $exonerados[$cont];
+                        $detalle->save();
+                        $cont=$cont+1;
+                    }
                 }
             }
+            
             DB::commit();
             //return $matriculas->exonerados;
             Flash::success(__('messages.saved', ['model' => __('models/matriculas.singular')]));
 
             return redirect(route('matriculas.index'));
         } catch (\Throwable $th) {
-            //Flash::error(__('messages.rel_exist'));
-
-            //return redirect(route('matriculas.index'));
             dd($th);
+            Flash::error(__('messages.rel_exist'));
+
+            return redirect(route('matriculas.index'));
+            
         }
     }
 
