@@ -50,5 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('indexalumno', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.indexalumno');
     Route::resource('catedras', 'CatedraController');
     Route::post('registrarnotas','EvaluacionesController@registrarnotas')->name('guardarnotas');
+    Route::resource('reportes', 'ReportesController');
+    Route::get('imprimir-excel', 'ImprimirController@ImprimirExcel')->name('imprimir.excel');
 });
 

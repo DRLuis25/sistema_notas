@@ -32,9 +32,10 @@ class AlumnosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $alumnos = $this->alumnosRepository->paginate(10);
+        $BuscarAlumnos = $request->get('BuscarAlumnos');
+        $alumnos = Alumnos::where('nombres','like','%'.$BuscarAlumnos.'%')->paginate(10);
 
-        return view('alumnos.index')
+        return view('alumnos.index',compact('BuscarAlumnos'))
             ->with('alumnos', $alumnos);
     }
 
