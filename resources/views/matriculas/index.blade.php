@@ -26,7 +26,11 @@
         <div class="card">
             <div class="card-body p-0">
                 @include('matriculas.table')
-
+                <div class="card-footer clearfix float-right">
+                    <div class="float-right">
+                        @include('adminlte-templates::common.paginate', ['records' => $matriculas])
+                    </div>
+                </div>
             </div>
 
         </div>
