@@ -18,24 +18,24 @@
                 </thead>
                 <tbody>
                     @foreach($cursos as $curso)
-                    @if($curso->nivel->descripcion == "Primaria") 
-                        <tr>
-                            <td>{{ $curso->nombre }}</td>
-                            <td width="120">
-                                {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
-                                <div class='btn-group'>
-                                    <a href="{{ route('cursos.show', [$curso->id]) }}" class='btn btn-default btn-xs'>
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('cursos.edit', [$curso->id]) }}" class='btn btn-default btn-xs'>
-                                    <i class="far fa-edit"></i>
-                                    </a>
-                                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("'.__('crud.are_you_sure').'")']) !!}
-                                </div>
-                                {!! Form::close() !!}
-                            </td>
-                        </tr>
-                    @endif
+                        @if($curso->nivel->descripcion == "Primaria") 
+                            <tr>
+                                <td>{{ $curso->nombre }}</td>
+                                <td width="120">
+                                    {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
+                                    <div class='btn-group'>
+                                        <a href="{{ route('cursos.show', [$curso->id]) }}" class='btn btn-default btn-xs'>
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('cursos.edit', [$curso->id]) }}" class='btn btn-default btn-xs'>
+                                        <i class="far fa-edit"></i>
+                                        </a>
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("'.__('crud.are_you_sure').'")']) !!}
+                                    </div>
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -51,23 +51,23 @@
                 </thead>
                 <tbody>
                     @foreach($cursos as $curso)
-                    @if($curso->nivel->descripcion != "Primaria") 
-                        <tr>
-                            <td>{{ $curso->nombre }}</td>
-                            <td width="120">
-                                {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
-                                <div class='btn-group'>
-                                    <a href="{{ route('cursos.show', [$curso->id]) }}" class='btn btn-default btn-xs'>
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('cursos.edit', [$curso->id]) }}" class='btn btn-default btn-xs'>
-                                    <i class="far fa-edit"></i>
-                                    </a>
-                                    {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("'.__('crud.are_you_sure').'")']) !!}
-                                </div>
-                                {!! Form::close() !!}
-                            </td>
-                        </tr>
+                        @if($curso->nivel->descripcion != "Primaria") 
+                            <tr>
+                                <td>{{ $curso->nombre }}</td>
+                                <td width="120">
+                                    {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
+                                    <div class='btn-group'>
+                                        <a href="{{ route('cursos.show', [$curso->id]) }}" class='btn btn-default btn-xs'>
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('cursos.edit', [$curso->id]) }}" class='btn btn-default btn-xs'>
+                                        <i class="far fa-edit"></i>
+                                        </a>
+                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("'.__('crud.are_you_sure').'")']) !!}
+                                    </div>
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
                         @endif
                     @endforeach
                 </tbody>

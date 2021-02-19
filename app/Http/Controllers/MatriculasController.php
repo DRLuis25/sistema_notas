@@ -48,7 +48,6 @@ class MatriculasController extends AppBaseController
         } catch (\Throwable $th) {
             //Flash::error etc
         }
-
     }
 
     /**
