@@ -9,12 +9,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($matriculas as $matricula)
+                @foreach($evaluaciones as $evaluacion)
                 <tr>
-                    <td>{{ $matricula->matriculamaestro->nromatricula }}</td>
-                    <input type="hidden" name="matricula_id[]" value="{{$matricula->matricula_id}}">
-                    <td>{{ $matricula->matriculamaestro->alumno->apellidoPaterno }} {{ $matricula->matriculamaestro->alumno->apellidoMaterno }}, {{ $matricula->matriculamaestro->alumno->nombres }}</td>
-                    <td><input type="text" class="form-control col-2" name="nota_id[]" maxlength="2" min="0" max="20"></td>
+                    <td>{{ $evaluacion->matricula->nromatricula }}</td>
+                    <input type="hidden" name="evaluacion_id[]" value="{{$evaluacion->id}}">
+                    <input type="hidden" name="matricula_id[]" value="{{$evaluacion->matricula->id}}">
+                    <td>{{ $evaluacion->matricula->alumno->apellidoPaterno }} {{ $evaluacion->matricula->alumno->apellidoMaterno }}, {{ $evaluacion->matricula->alumno->nombres }}</td>
+                    <td><input type="text" class="form-control col-2" name="nota_id[]" maxlength="2" min="0" max="20" value="{{$evaluacion->calificacion}}"></td>
                 </tr>
             @endforeach
             </tbody>

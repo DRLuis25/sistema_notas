@@ -261,6 +261,7 @@ class PermissionSeeder extends Seeder
             'abreviatura'=>'Adec. org. y des. ideas',
             'orden'=>'2'
         ]);
+
         //Alumnos
         $alumnos = factory(Alumnos::class,20)->create()->each(function ($alumno){
             //Matrícula única inicial
@@ -277,25 +278,5 @@ class PermissionSeeder extends Seeder
             'seccion_id'=>$primeroPrimariaSeccionA->id,
             'observaciones'=>null,
         ]);
-        
-        //Registrar Evaluaciones alumno
-
-        // $evaluacionCapacidad1Matricula1Alumno1=Evaluaciones::create([
-        //     'matricula_id'=>$matricula1Alumno1->matricula_id,
-        //     'periodo_id'=>$periodo->id,
-        //     'bimestre_id'=>$primerBimestre->id,
-        //     'capacidad_id'=>$capacidad1CursoComunicacionPrimerGradoPrimaria->id,
-        //     'calificacion'=>'20',
-        //     'observaciones'=>null
-        // ]);
-
-        // $evaluacionCapacidad2Matricula1Alumno1=Evaluaciones::create([
-        //     'matricula_id'=>$matricula1Alumno1->matricula_id,
-        //     'periodo_id'=>$periodo->id,
-        //     'bimestre_id'=>$primerBimestre->id,
-        //     'capacidad_id'=>$capacidad2CursoComunicacionPrimerGradoPrimaria->id,
-        //     'calificacion'=>'15',
-        //     'observaciones'=>null
-        // ]);
     }
 }

@@ -5,27 +5,34 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@lang('models/evaluaciones.singular')</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('evaluaciones.index') }}">
-                        @lang('crud.back')
-                    </a>
+                    <h1>Registrar Notas</h1>
                 </div>
             </div>
         </div>
     </section>
 
+    
     <div class="content px-3">
-        <div class="card">
 
+        @include('adminlte-templates::common.errors')
+        @csrf
+        <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('evaluaciones.show_fields')
+                    @include('evaluaciones.fieldslistar')
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="content px-3">
+
+        @include('flash::message')
+
+        <div class="clearfix"></div>
+
+        <div class="card">
+            @include('evaluaciones.listaralumnos')
         </div>
     </div>
 @endsection

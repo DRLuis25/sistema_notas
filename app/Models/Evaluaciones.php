@@ -89,6 +89,13 @@ class Evaluaciones extends Model
     {
         return $this->belongsTo(MatriculaMaestro::class, 'matricula_id');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function matriculadetalle()
+    {
+        return $this->belongsTo(Matriculas::class, 'matricula_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

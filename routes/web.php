@@ -47,9 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('matriculas', 'MatriculasController');
     
     Route::resource('evaluaciones', 'EvaluacionesController');
+    Route::get('listar-evaluaciones','EvaluacionesController@listar')->name('evaluaciones.listar');
+    Route::get('editar-evaluaciones','EvaluacionesController@editar')->name('evaluaciones.editar');
     Route::get('indexalumno', 'EvaluacionesController@listarAlumnos')->name('evaluaciones.indexalumno');
-    Route::resource('catedras', 'CatedraController');
     Route::post('registrarnotas','EvaluacionesController@registrarnotas')->name('guardarnotas');
+    Route::post('actualizarnotas','EvaluacionesController@actualizarnotas')->name('evaluaciones.actualizarnotas');
+    Route::resource('catedras', 'CatedraController');
     Route::resource('reportes', 'ReportesController');
     Route::get('imprimir-excel', 'ImprimirController@ImprimirExcel')->name('imprimir.excel');
 });

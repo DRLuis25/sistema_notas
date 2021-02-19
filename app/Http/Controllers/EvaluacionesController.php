@@ -41,8 +41,8 @@ class EvaluacionesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $evaluaciones = $this->evaluacionesRepository->paginate(10);
-
+        $evaluaciones = Evaluaciones::select('periodo_id','bimestre_id','capacidad_id')->distinct()->paginate(10);
+        //$evaluaciones = $this->evaluacionesRepository->paginate(10);
         return view('evaluaciones.index')
             ->with('evaluaciones', $evaluaciones);
     }
@@ -61,6 +61,99 @@ class EvaluacionesController extends AppBaseController
         return view('evaluaciones.create',compact(['periodo','niveles','bimestre','curso']));
     }
 
+    public function listar(Request $request)
+    {
+        //return $request;
+        $evaluaciones = Evaluaciones::where('periodo_id','=',$request->periodo_id)->where('bimestre_id','=',$request->bimestre_id)->where('capacidad_id','=',$request->capacidad_id)->get();
+        //return $evaluaciones;
+        // $periodo = Periodos::where('id','=',$request->periodo_id)->first();
+        // $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
+        // $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
+        $niveles = Niveles::where('id','=',$request->nivel_id)->first();
+        $grado = Grados::where('id','=',$request->grado_id)->first();
+        $seccion = Secciones::where('id','=',$request->seccion_id)->first();
+        $curso = Cursos::where('id','=',$request->curso_id)->first();
+        return view('evaluaciones.show',compact(['evaluaciones']));
+    
+    }
+
+    public function editar(Request $request)
+    {
+        //return $request;
+        $evaluaciones = Evaluaciones::where('periodo_id','=',$request->periodo_id)->where('bimestre_id','=',$request->bimestre_id)->where('capacidad_id','=',$request->capacidad_id)->get();
+        //return $evaluaciones;
+        $matriculas = Matriculas::where('periodo_id','=',$evaluaciones[0]->periodo->id)->where('seccion_id','=',$evaluaciones[0]->matriculadetalle->seccion->id)->get();
+        return view('evaluaciones.edit',compact(['evaluaciones','matriculas']));
+
+    }
+    public function actualizarnotas(Request $request)
+    {
+        //return $request;
+        try{
+            DB::beginTransaction();
+            $cont=0;
+            $evaluacion_id = $request->get('evaluacion_id');
+            $nota_id = $request->get('nota_id');
+            while ($cont < count($evaluacion_id)) {
+                $evaluaciones = Evaluaciones::where('id','=',$evaluacion_id[$cont])->first();
+                $evaluaciones->calificacion = $nota_id[$cont];
+                $evaluaciones->save();
+                $cont=$cont+1;
+            }
+            DB::commit();
+            Flash::success('Notas actualizadas');
+            return redirect(route('evaluaciones.index'));
+        }catch (Exception $e) {
+            DB::rollback();
+            dd($e);
+        }     
+
+    }
+    public function listarAlumnos(Request $request)
+    {
+        //return $request;
+        $periodo = Periodos::where('status','=','1')->first();
+        $niveles = Niveles::where('id','=',$request->nivel_id)->first();
+        $grado = Grados::where('id','=',$request->grado_id)->first();
+        $seccion = Secciones::where('id','=',$request->seccion_id)->first();
+        $curso = Cursos::where('id','=',$request->curso_id)->first();
+        $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
+        $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
+        $matriculas = Matriculas::where('periodo_id','=',$periodo->id)->where('seccion_id','=',$seccion->id)->get();
+        return view('evaluaciones.indexalumno',compact(['periodo','niveles','grado','seccion','curso','bimestre','capacidad','matriculas']));
+    }
+    public function registrarnotas(Request $request)
+    {
+        try{
+            //return $request;
+            DB::beginTransaction();
+            $cont=0;
+            $periodo_id = $request->get('periodo_id');
+            $bimestre_id = $request->get('bimestre_id');
+            $capacidad_id = $request->get('capacidad_id');
+            $matricula_id = $request->get('matricula_id');
+            $nota_id = $request->get('nota_id');
+            while ($cont < count($matricula_id)) {
+                $evaluaciones= new Evaluaciones();
+                $evaluaciones->matricula_id = $matricula_id[$cont];
+                $evaluaciones->periodo_id = $periodo_id;
+                $evaluaciones->bimestre_id = $bimestre_id;
+                $evaluaciones->capacidad_id = $capacidad_id;
+                $evaluaciones->calificacion = $nota_id[$cont];
+                $evaluaciones->save();
+                //return $evaluaciones;
+                $cont=$cont+1;
+            }
+            DB::commit();
+            Flash::success('Notas registradas');
+            return redirect(route('evaluaciones.index'));
+        }catch (Exception $e) {
+            DB::rollback();
+            dd($e);
+        }     
+       
+    }
+    //No se utiliza
     /**
      * Store a newly created Evaluaciones in storage.
      *
@@ -86,9 +179,10 @@ class EvaluacionesController extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $evaluaciones = $this->evaluacionesRepository->find($id);
+        return $request;
+        //$evaluaciones = $this->evaluacionesRepository->find($id);
 
         if (empty($evaluaciones)) {
             Flash::error(__('messages.not_found', ['model' => __('models/evaluaciones.singular')]));
@@ -98,7 +192,6 @@ class EvaluacionesController extends AppBaseController
 
         return view('evaluaciones.show')->with('evaluaciones', $evaluaciones);
     }
-
     /**
      * Show the form for editing the specified Evaluaciones.
      *
@@ -168,52 +261,5 @@ class EvaluacionesController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/evaluaciones.singular')]));
 
         return redirect(route('evaluaciones.index'));
-    }
-    public function listarAlumnos(Request $request)
-    {
-        //return $request;
-        $periodo = Periodos::where('status','=','1')->first();
-        $niveles = Niveles::where('id','=',$request->nivel_id)->first();
-        $grado = Grados::where('id','=',$request->grado_id)->first();
-        $seccion = Secciones::where('id','=',$request->seccion_id)->first();
-        $curso = Cursos::where('id','=',$request->curso_id)->first();
-        $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
-        $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
-        $matriculas = Matriculas::where('periodo_id','=',$periodo->id)->where('seccion_id','=',$seccion->id)->get();
-        return view('evaluaciones.indexalumno',compact(['periodo','niveles','grado','seccion','curso','bimestre','capacidad','matriculas']));
-    }
-    public function registrarnotas(Request $request)
-    {
-        try{
-
-            DB::beginTransaction(); 
-
-            $cont=0;
-            $periodo_id = $request->get('periodo_id');
-            $bimestre_id = $request->get('bimestre_id');
-            $capacidad_id = $request->get('capacidad_id');
-            $matricula_id = $request->get('matricula_id');
-            $nota_id = $request->get('nota_id');
-        
-
-            while ($cont < count($matricula_id)) {
-                $evaluaciones= new Evaluaciones();
-                $evaluaciones->matricula_id = $matricula_id[$cont];
-                $evaluaciones->periodo_id = $periodo_id[$cont];
-                $evaluaciones->bimestre_id = $bimestre_id[$cont];
-                $evaluaciones->capacidad_id = $capacidad_id[$cont];
-                $evaluaciones->calificacion = $nota_id[$cont];
-                $evaluaciones->save();
-  
-                DB::commit();  
-                $cont=$cont+1;
-            }
-
-           return back()->with('mensaje', 'Nota registrada');
-
-        }catch (Exception $e) {
-            DB::rollback();
-        }     
-       
     }
 }

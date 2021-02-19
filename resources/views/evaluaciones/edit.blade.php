@@ -4,34 +4,39 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>@lang('models/evaluaciones.singular')</h1>
+                <div class="col-sm-6">
+                    <h1>Editar Notas</h1>
                 </div>
             </div>
         </div>
     </section>
 
+    
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-
+    <form action="{{route('evaluaciones.actualizarnotas')}}" method="POST" >
+        @csrf
         <div class="card">
-
-            {!! Form::model($evaluaciones, ['route' => ['evaluaciones.update', $evaluaciones->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('evaluaciones.fields')
+                    @include('evaluaciones.fieldslistar')
                 </div>
             </div>
 
-            <div class="card-footer">
-                {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('evaluaciones.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
-            </div>
-
-           {!! Form::close() !!}
-
         </div>
     </div>
+
+    <div class="content px-3">
+
+        @include('flash::message')
+
+        <div class="clearfix"></div>
+
+        <div class="card">
+            @include('evaluaciones.tablealumnoedit')
+        </div>
+    </div>
+    </form>
 @endsection
