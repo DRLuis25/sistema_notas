@@ -13,10 +13,12 @@ use App\Models\Capacidades;
 use App\Models\Cursos;
 use App\Models\Evaluaciones;
 use App\Models\Grados;
+
 use App\Models\MatriculaMaestro;
 use App\Models\Matriculas;
 use App\Models\Secciones;
 use Illuminate\Http\Request;
+use DB;
 use Flash;
 use Response;
 
@@ -182,19 +184,36 @@ class EvaluacionesController extends AppBaseController
     }
     public function registrarnotas(Request $request)
     {
-        return $request;
-        //Obtener notas de los alumnos
+        try{
+
+            DB::beginTransaction(); 
+
+            $cont=0;
+            $periodo_id = $request->get('periodo_id');
+            $bimestre_id = $request->get('bimestre_id');
+            $capacidad_id = $request->get('capacidad_id');
+            $matricula_id = $request->get('matricula_id');
+            $nota_id = $request->get('nota_id');
         
 
-        //Registrar notas
-        // foreach ($alumnos as $item) {
-        //     Evaluaciones::create([
-        //         'matricula_id'=>$item->matricula_id
-        //     ]);
-        // }
-        while ($a <= 10) {
-            # code...
-        }
-        return 'registrado';
+            while ($cont < count($matricula_id)) {
+                $evaluaciones= new Evaluaciones();
+                $evaluaciones->matricula_id = $matricula_id[$cont];
+                $evaluaciones->periodo_id = $periodo_id[$cont];
+                $evaluaciones->bimestre_id = $bimestre_id[$cont];
+                $evaluaciones->capacidad_id = $capacidad_id[$cont];
+                $evaluaciones->calificacion = $nota_id[$cont];
+                $evaluaciones->save();
+  
+                DB::commit();  
+                $cont=$cont+1;
+            }
+
+           return back()->with('mensaje', 'Nota registrada');
+
+        }catch (Exception $e) {
+            DB::rollback();
+        }     
+       
     }
 }

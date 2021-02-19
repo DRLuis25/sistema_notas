@@ -29,7 +29,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Listar', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('evaluaciones.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
+                <a href="{{ route('evaluaciones.indexalumno') }}" class="btn btn-default">@lang('crud.cancel')</a>
             </div>
 
             {!! Form::close() !!}
