@@ -9,13 +9,14 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Niveles;
 use App\Models\Periodos;
 use App\Models\Bimestres;
-use App\Models\Cursos;
 use App\Models\Capacidades;
-use App\Models\Secciones;
-use App\Models\Grados;
-use App\Models\MatriculaMaestro;
-use Illuminate\Http\Request;
+use App\Models\Cursos;
 use App\Models\Evaluaciones;
+use App\Models\Grados;
+use App\Models\Matriculas;
+use App\Models\Secciones;
+use Illuminate\Http\Request;
+use DB;
 use Flash;
 use Response;
 
@@ -39,9 +40,9 @@ class EvaluacionesController extends AppBaseController
     public function index(Request $request)
     {
         $evaluaciones = $this->evaluacionesRepository->paginate(10);
+
         return view('evaluaciones.index')
             ->with('evaluaciones', $evaluaciones);
-    
     }
 
     /**
@@ -168,16 +169,58 @@ class EvaluacionesController extends AppBaseController
     }
     public function listarAlumnos(Request $request)
     {
-       return $request;
-            $seccion = Secciones::first();
-            $periodo = Periodos::where('status','=','1')->first();
-            $niveles = Niveles::where('status','=','1')->first();
-            $bimestre= Bimestres::where('status','=','1')->first();
-            $curso=Cursos::where('status','=','1')->first();
-            $grado=Grados::where('status','=','1')->first();
-            $capacidad=Capacidades::where('status','=','1')->first();
-            $matricula=MatriculaMaestro::where('status','=','1')->first();
-        return view('evaluaciones.indexalumno',compact(['periodo','niveles','bimestre','curso','grado','capacidad','seccion','matricula']));
+        //return $request;
+        $periodo = Periodos::where('status','=','1')->first();
+        $niveles = Niveles::where('id','=',$request->nivel_id)->first();
+        $grado = Grados::where('id','=',$request->grado_id)->first();
+        $seccion = Secciones::where('id','=',$request->seccion_id)->first();
+        $curso = Cursos::where('id','=',$request->curso_id)->first();
+        $bimestre = Bimestres::where('id','=',$request->bimestre_id)->first();
+        $capacidad = Capacidades::where('id','=',$request->capacidad_id)->first();
+        $matriculas = Matriculas::where('periodo_id','=',$periodo->id)->where('seccion_id','=',$seccion->id)->get();
+        return view('evaluaciones.indexalumno',compact(['periodo','niveles','grado','seccion','curso','bimestre','capacidad','matriculas']));
+    }
+    public function registrarnotas(Request $request)
+    {
+        //return $request;
+        //Obtener notas de los alumnos
+
+        //Registrar notas
+         //foreach ($alumnos as $item) {
+        //     Evaluaciones::create([
+        //          'matricula_id'=>$item->matricula_id
+        //      ]);
+        //  }
+        try{
+
+            DB::beginTransaction(); 
+
+            $cont=0;
+            $periodo_id = $request->get('periodo_id');
+            $bimestre_id = $request->get('bimestre_id');
+            $capacidad_id = $request->get('capacidad_id');
+            $matricula_id = $request->get('matricula_id');
+            $nota_id = $request->get('nota_id');
         
+
+            while ($cont < count($matricula_id)) {
+                $evaluaciones= new Evaluaciones();
+                $evaluaciones->matricula_id = $matricula_id[$cont];
+                $evaluaciones->periodo_id = $periodo_id[$cont];
+                $evaluaciones->bimestre_id = $bimestre_id[$cont];
+                $evaluaciones->capacidad_id = $capacidad_id[$cont];
+                $evaluaciones->calificacion = $nota_id[$cont];
+                $evaluaciones->save();
+  
+                DB::commit();  
+                $cont=$cont+1;
+            }
+
+           return back()->with('mensaje', 'Nota registrada');
+
+        }catch (Exception $e) {
+            DB::rollback();
+           }     
+       
     }
 }
